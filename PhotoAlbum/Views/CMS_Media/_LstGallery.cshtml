@@ -1,0 +1,17 @@
+﻿@model List<CMSWebsite.Models.CMS_MediaDataModel>
+@foreach (var item in Model)
+{
+    <div class="col-md-2" id="box-media-@item.ID">
+        <div class="thumbnail">
+            <div class="image view view-first cursor-pointer" ondblclick="chooseIMG('@item.FileName',@item.ID)">
+                <img style="width: 100%; display: block;" src="@item.FileName" alt="image" />
+            </div>
+            @*<div class="btn-del-img">
+                <a class="btn btn-danger btn-xs" onclick="delImg('@item.FileName',@item.ID)">X</a>
+            </div>*@
+            <div class="caption">
+                <p>@item.FileSize</p>
+            </div>
+        </div>
+    </div>
+}

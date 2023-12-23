@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Đăng nhập hệ thống</title>
+    <!-- Bootstrap -->
+    <link href="~/Content/common/bootstrap/bootstrap.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="~/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="~/Content/plugins/nprogress/nprogress.css" rel="stylesheet">
+    <!-- PNotify -->
+    <link href="~/Content/plugins/pnotify/pnotify.css" rel="stylesheet">
+    <!-- Animate.css -->
+    <link href="~/Content/plugins/animate/animate.css" rel="stylesheet">
+    <!-- Custom Theme Style -->
+    <link href="~/Content/cms/custom/custom.min.css" rel="stylesheet">
+    <!-- User Custom -->
+    <link href="~/Content/cms/custom/user.custom.css" rel="stylesheet">
+</head>
+<body class="login">
+    <div>
+        <a class="hiddenanchor" id="signup"></a>
+        <a class="hiddenanchor" id="signin"></a>
+        <div class="login_wrapper">
+            <div style="text-align:center;"><img src="~/Images/common/logo.jpg" height="142" width="160" /></div>
+            <section class="login_content">
+                <form>
+                    <h1>Đăng nhập CMS</h1>
+                    <div>
+                        <input type="text" class="form-control" placeholder="Tên đăng nhập" value="admin" id="txtUserName" onkeypress="pressEnter(event)" />
+                    </div>
+                    <div>
+                        <input type="password" class="form-control" placeholder="Mật khẩu" value="admin" id="txtPass" onkeypress="pressEnter(event)"/>
+                    </div>
+                    <div>
+                        <span class="green display-none" id="messLogin">Đăng đăng nhập. Vui lòng chờ ... </span>
+                    </div>
+                    <div>
+                        <a class="btn btn-default submit" onclick="loginProcess()"> <i class="fa fa-spinner fa-spin display-none" id="loadding"></i>  Đăng nhập</a>
+                        @*<a class="reset_pass" href="#">Quên mật khẩu ?</a>*@
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="separator">
+                        <p class="change_link">
+                            New to site?
+                            <a href="#signup" class="to_register"> Create Account </a>
+                        </p>
+                        <div class="clearfix"></div>
+                        <br />
+                        <div>
+                            <h1><i class="fa fa-paw"></i> Quản trị hệ thống !</h1>
+                            <p>©2017 All Rights Reserved. Hệ thống quản trị website XXX.com </p>
+                        </div>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </div>
+    <!-- jQuery -->
+    <script src="~/Scripts/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="~/Scripts/common/bootstrap/bootstrap.min.js"></script>
+    <!-- JS Page-->
+    <script type="text/javascript" src="~/Scripts/cms/cms.login.js"></script>
+    <!-- JS Common-->
+    <script type="text/javascript" src="~/Scripts/common/custom.utilities.js"></script>
+    <!-- PNotify -->
+    <script src="~/Scripts/plugins/pnotify/pnotify.js"></script>
+</body>
+</html>

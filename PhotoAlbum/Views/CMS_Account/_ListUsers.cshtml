@@ -1,0 +1,40 @@
+﻿
+@model List<CMSWebsite.Models.UserViewModel>
+
+@foreach (var item in Model)
+{
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 profile_details">
+        <div class="well profile_view">
+            <div class="col-sm-12">
+                <h4 class="brief"><i>@item.RoleName</i></h4>
+                <div class="left col-xs-7">
+                    <h2>@item.FullName</h2>
+                    @*<p><strong>About: </strong> Web Designer / UX / Graphic Artist / Coffee Lover </p>*@
+                    <ul class="list-unstyled">
+                        <li><i class="fa fa-calendar"></i> Ngày sinh : @item.BirthdayStr</li>
+                        <li><i class="fa fa-phone"></i> Điện thoại : @item.Phone </li>
+                        <li><i class="fa fa-building"></i> Địa chỉ : @item.Address </li>
+
+                    </ul>
+                </div>
+                <div class="right col-xs-5 text-center">
+                    <img src="@item.ImgFace" alt="" class="img-circle img-responsive">
+                </div>
+            </div>
+            <div class="col-xs-12 bottom text-center">
+                <div class="col-xs-12 col-sm-6 emphasis">
+                    <p class="ratings">
+                        @item.Status
+                    </p>
+                </div>
+                <div class="col-xs-12 col-sm-6 emphasis">
+
+                    <a onclick="editUser(@item.UserID)" class="btn btn-primary btn-xs">
+                        <i class="fa fa-user"> </i> Sửa thông tin
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+

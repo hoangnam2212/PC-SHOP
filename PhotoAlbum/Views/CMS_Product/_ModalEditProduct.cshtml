@@ -1,0 +1,321 @@
+﻿@model CMSWebsite.Models.ProductDataModal
+@{
+    string[] lstImg = Model.ProEdit.Gallery.Split(';');
+    string cate = Model.ProEdit.CateID.Substring(1, Model.ProEdit.CateID.Length - 2);
+    List<string> lstCate = cate.Split(',').ToList();
+}
+<div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">
+                <span aria-hidden="true">×</span>
+            </button>
+            <h4 class="modal-title">Cập nhật sản phẩm</h4>
+        </div>
+        <div class="modal-body">
+            <form id="formProductEdit" name="formProductEdit" data-parsley-validate class="form-horizontal form-label-left" onsubmit="">
+                <div class="row">
+                    <div class="col-md-8 col-sm-8 col-xs-12">
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                                Mã sản phẩm <span class="required">*</span>
+                            </label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <input type="text" id="txtProductCodeEdit" name="txtProductCodeEdit" value="@Model.ProEdit.ProductCode" class="form-control col-md-7 col-xs-12">
+                                <input type="hidden" id="txtHidImgEdit" name="txtHidImgEdit" value="@Model.ProEdit.Images" />
+                                <input type="hidden" id="txtHidImgEdit2" name="txtHidImgEdit2" value="@Model.ProEdit.ImageHover" />
+                                <input type="hidden" id="txtHidImgEditGallery" name="txtHidImgEditGallery" value="@Model.ProEdit.Gallery" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                                Tên hàng hóa <span class="required">*</span>
+                            </label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <input type="hidden" id="txtProEditID" name="txtProEditID" value="@Model.ProEdit.ProductID" />
+                                <input type="text" id="txtProductNameEdit" name="txtProductNameEdit" value="@Model.ProEdit.Name" required="required" class="form-control col-md-7 col-xs-12">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Loại hàng</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <select class="form-control select2" id="sleCateEdit" name="sleCateEdit" multiple="multiple" style="width:98%">
+                                    @foreach (var item in Model.LstCate)
+                                    {
+                                        if (lstCate.Contains(item.CategoyID.ToString()))
+                                        {
+                                            <option selected value="@item.CategoyID">@item.Name</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@item.CategoyID">@item.Name</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Giá bán lẻ</label>
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                <input id="txtPriceRetailEdit" class="form-control col-md-7 col-xs-12" onfocus="this.select()" type="text" value="@Model.ProEdit.PriceRetailStr" maxlength="13" onkeypress='return event.charCode >= 48 && event.charCode <= 57' onkeyup="add_dot(this)" name="txtPriceRetailEdit">
+                            </div>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Giá gốc</label>
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                <input id="txtPriceOriEdit" class="form-control col-md-7 col-xs-12" onfocus="add_dot(this)" type="text" value="@Model.ProEdit.PriceSource" maxlength="13" onkeypress='return event.charCode >= 48 && event.charCode <= 57' onkeyup="add_dot(this)" name="txtPriceOriEdit">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <ul class="list-unstyled" id="lstCate">
+                                    <li>
+                                        @if (Model.ProEdit.IsSlider)
+                                        {
+                                            <input type="checkbox" checked class="flat chk-check" value="1" id="chk-slider" />
+                                            <label for="chk-slider"> &nbsp; Trình bày Slider &nbsp;&nbsp;</label>
+                                        }
+                                        else
+                                        {
+                                            <input type="checkbox" class="flat chk-check" value="1" id="chk-slider" />
+                                            <label for="chk-slider"> &nbsp; Trình bày Slider &nbsp;&nbsp;</label>
+                                        }
+
+                                        @if (Model.ProEdit.IsFeature)
+                                        {
+                                            <input type="checkbox" checked class="flat chk-check" value="1" id="chk-feature" />
+                                            <label for="chk-feature"> &nbsp; Sản phẩm nổi bật &nbsp;&nbsp;</label>
+                                        }
+                                        else
+                                        {
+                                            <input type="checkbox" class="flat chk-check" value="1" id="chk-feature" />
+                                            <label for="chk-feature"> &nbsp; Sản phẩm nổi bật &nbsp;&nbsp;</label>
+                                        }
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-4 col-xs-12">
+                        <div class="col-md-6" style="height:140px;text-align:center;border:1px dashed #ccc;cursor:pointer" onclick="uploadImgEdit(1)" id="ImagecontainerEdit1">
+                            <img src="@Model.ProEdit.Images" class="thumb" />
+                        </div>
+                        <div class="col-md-6" style="height:140px;text-align:center;border:1px dashed #ccc;cursor:pointer" onclick="uploadImgEdit(2)" id="ImagecontainerEdit2">
+                            <img src="@Model.ProEdit.ImageHover" class="thumb" />
+                        </div>
+                        <div class="col-md-12" style="margin-top:15px;">
+                            <a class="btn btn-primary" onclick="uploadImgEdit(1)">Ảnh bìa 1</a> &nbsp;
+                            <a class="btn btn-primary" onclick="uploadImgEdit(2)">Ảnh bìa 2</a>
+                            <p>Các ảnh bìa kích thước (600 x 600) px</p>
+                            <input type="file" class="hide" id="fileImgEdit1" name="fileImgEdit1" />
+                            <input type="file" class="hide" id="fileImgEdit2" name="fileImgEdit2" />
+                        </div>
+                    </div>
+                </div><!-- End row info-->
+
+                <div class="row">
+                    <div class="col-md-12 col-xs-12 col-lg-12">
+                        <a class="btn btn-primary btn-sm" onclick="uploadImgMulEdit()"><i class="fa fa-photo"></i> Ảnh chi tiết</a>
+                    </div>
+                    <div class="col-md-12" style="float:left;text-align:center;border:1px dashed #ccc;cursor:pointer;padding-top:10px;">
+                        <div class="clearfix"></div>
+                        <ul id="lstGalleryAccEdit" class="img-ul-lst">
+                            @for (int i = 0; i < lstImg.Length - 1; i++)
+                            {
+                                int ran = new Random().Next(20000);
+                                <li id="li-edit-@ran">
+                                    <img src='@lstImg[i]' class='thumb-detail' /><a class='btn btn-danger btn-xs btn-del-img' onclick='delImgGalleryEdit(@ran)'>X</a>
+                                    <input type="hidden" id="gallery-@ran" value="@lstImg[i]" />
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                    <input type="file" name="MultiFilesEdit" multiple id="MultiFilesEdit" style="display:none" />
+                </div>
+                <div class="row">
+                    <div class="col-lg-12" style="margin-top:5px;">
+                        <a class="btn btn-info" id="lnkSumEdit" onclick="showSumEdit()">Tóm tắt sản phẩm</a>
+                    </div>
+                </div>
+                <div class="row" id="sumaryProductEdit" style="display:none;margin-bottom:10px;">
+                    <div class="col-lg-12 col-md-12 col-xs-12">
+                        <textarea id="editor1" name="editor1" rows="20">@Model.ProEdit.ProSumary</textarea>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12" style="margin-top:5px;">
+                        <a class="btn btn-info" id="lnkDetailEdit" onclick="showDetailEdit()">Nội dung sản phẩm</a>
+                    </div>
+                </div>
+                <div class="row" id="detailProductEdit" style="display:none;margin-bottom:10px;">
+                    <div class="col-lg-12 col-md-12 col-xs-12">
+                        <textarea id="editor2" name="editor2" rows="20">@Model.ProEdit.ProDescription</textarea>
+                    </div>
+                </div>
+
+                <div class="col-md-12 col-sm-12 col-xs-12 text-right">
+                    <div class="ln_solid"></div>
+                    <div class="form-group">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <a class="btn btn-success" onclick="saveEditProduct()"><i class="fa fa-save"></i> Cập nhật</a>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-remove"></i>  Hủy bỏ</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div> <!-- End modal-body -->
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+
+        $('.select2').select2();
+        CKEDITOR.replace('editor1', {
+            filebrowserBrowseUrl: location.protocol + '//' + location.host + '/Content/ckfinder/ckfinder.html',
+            filebrowserImageBrowseUrl: location.protocol + '//' + location.host + '/Content/ckfinder/ckfinder.html?type=Images',
+            filebrowserFlashBrowseUrl: location.protocol + '//' + location.host + '/Content/ckfinder/ckfinder.html?type=Flash',
+            height: '200px'
+        });
+        CKEDITOR.replace('editor2', {
+            filebrowserBrowseUrl: location.protocol + '//' + location.host + '/Content/ckfinder/ckfinder.html',
+            filebrowserImageBrowseUrl: location.protocol + '//' + location.host + '/Content/ckfinder/ckfinder.html?type=Images',
+            filebrowserFlashBrowseUrl: location.protocol + '//' + location.host + '/Content/ckfinder/ckfinder.html?type=Flash',
+            height: '200px'
+        });
+        currentGallery = "";
+    });
+
+
+    function uploadImgEdit(id) {
+        $("#fileImgEdit" + id).trigger('click');
+
+    }
+    $("#fileImgEdit1").change(function (evt) {
+        singleFileSelectedEdit(evt, 1)
+        UploadFileEdit(1);
+    });
+    $("#fileImgEdit2").change(function (evt) {
+        singleFileSelectedEdit(evt, 2)
+        UploadFileEdit(2);
+    });
+    function singleFileSelectedEdit(evt, id) {
+        var selectedFile = ($("#fileImgEdit" + id))[0].files[0];//FileControl.files[0];
+        if (selectedFile) {
+            var imageType = /image.*/;
+            if (selectedFile.type.match(imageType)) {
+                if (selectedFile.size < 2097152) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        $("#ImagecontainerEdit" + id).empty();
+                        var dataURL = reader.result;
+                        var img = new Image()
+                        img.src = dataURL;
+                        img.className = "thumb";
+                        $("#ImagecontainerEdit" + id).append(img);
+                    };
+                    reader.readAsDataURL(selectedFile);
+                } else {
+                    alert("Ảnh không được quá 2 MB");
+                }
+            }
+        }
+    }
+
+    function UploadFileEdit(id) {
+        if ($("#fileImgEdit" + id)[0].files[0].size > 2097152) {
+            return;
+        }
+        var xhr = new XMLHttpRequest();
+        var fd = new FormData();
+
+        fd.append("file", $("#fileImgEdit" + id)[0].files[0]);
+        xhr.open("POST", "/CMS_File/UploadProducts", true);
+        xhr.send(fd);
+        xhr.addEventListener("load", function (event) {
+            var f = JSON.parse(xhr.responseText);
+            if (id == 1) {
+                $('#txtHidImgEdit').val(f["nameFile"]);
+            } else {
+                $('#txtHidImgEdit2').val(f["nameFile"]);
+            }
+        }, false);
+    }
+
+    function multiFileSelectedEdit() {
+        //var selectedFile = evt.target.files can use this  or select input file element and access it's files object
+        var selectedFile = $("#MultiFilesEdit")[0].files;//FileControl.files[0];
+        var imageType = /image.*/;
+        for (var i = 0; i < selectedFile.length; i++) {
+            if (!selectedFile[i].type.match(imageType)) {
+                continue;
+            }
+        }
+    }
+
+
+    function delImgGalleryEdit(id) {
+        var imgs = $('#gallery-'+id).val();
+        var curGalleryEdit = $('#txtHidImgEditGallery').val();
+        $('#li-edit-' + id).remove();
+        curGalleryEdit = curGalleryEdit.replace(imgs + ";", "");
+        $('#txtHidImgEditGallery').val(curGalleryEdit);
+
+        $.ajax({
+            type: "POST",
+            url: location.protocol + '//' + location.host + "/CMS_Media/DelImage",
+            data: { path: imgs },
+            success: function (content) {
+            },
+            error: function () {
+            }
+        });
+    }
+
+    function UploadMultipleFilesEdit() {
+        var curGalleryEdit = $('#txtHidImgEditGallery').val();
+        var selectedFiles = $("#MultiFilesEdit")[0].files;//FileControl.files[0];
+
+        //var files = document.getElementById("UploadedFiles").files;
+        for (var i = 0; i < selectedFiles.length; i++) {
+            if (!selectedFiles[i].type.match('image.*')) {
+                continue;
+            }
+            if (selectedFiles[i].size > 2097152) {
+                continue;
+            }
+
+            var formData = new FormData();
+
+            formData.append("file", $("#MultiFilesEdit")[0].files[i]);
+            $.ajax({
+                type: "POST",
+                url: location.protocol + '//' + location.host + "/CMS_File/UploadProducts",
+                data: formData,
+                processData: false,  // tell jQuery not to process the data
+                contentType: false,
+                success: function (content) {
+                    curGalleryEdit += content.nameFile + ";";
+                    var id = Math.floor((Math.random() * 2000) + 100)
+                    var divImg = "<li id='li-edit-" + id + "' ><img src='" + content.nameFile + "' class='thumb-detail'/><a class='btn btn-danger btn-xs btn-del-img' onclick='delImgGalleryEdit(" + id + ",'" + content.nameFile+"')'>X</a></li>";
+                    
+                    $("#lstGalleryAccEdit").append(divImg);
+                    $('#txtHidImgEditGallery').val(curGalleryEdit);
+                },
+                error: function () {
+                    showNotifyError("Xảy ra lỗi khi up ảnh", "Mời thử lại");
+                }
+            });
+        }
+    }
+
+    function uploadImgMulEdit() {
+        $("#MultiFilesEdit").trigger('click');
+    }
+
+    $("#MultiFilesEdit").change(function () {
+        multiFileSelectedEdit();
+        UploadMultipleFilesEdit();
+    });
+
+</script>

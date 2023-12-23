@@ -1,0 +1,125 @@
+﻿@model List<CMSWebsite.Models.Web_Category>
+@{
+    ViewBag.Title = "Thêm mới bài viết";
+    Layout = "~/Views/Shared/CMS_MasterPage.cshtml";
+}
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="form-group" id="box-title">
+                <input type="text" class="form-control" id="postTitle" placeholder="Nhập tiêu đề bài viết">
+            </div>
+            <div style="display:block">
+                <textarea id="editor1" name="editor1" rows="30" cols="80"></textarea>
+            </div>
+
+            <div class="box-header with-border">
+                <h5 class="box-title">Mô tả ngắn bài viết (Khoảng 200 từ) </h5>
+            </div><!-- /.box-header -->
+            <div class="box-body">
+                <div style="display:block">
+                    <textarea id="editor2" class="form-control" style="width:100%;" name="editor2" rows="4" cols="30"></textarea>
+                </div>
+            </div><!-- /.box-body -->
+
+            <div class="box-header with-border">
+                <h5 class="box-title">Thông tin SEO</h5>
+            </div><!-- /.box-header -->
+            <form role="form" class="form-horizontal">
+                <div class="box-body">
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">SEO Keywords</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="seoKeyword" placeholder="Từ khóa">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">SEO Description</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" rows="3" id="seoDesc" placeholder="Mô tả ..."></textarea>
+                        </div>
+                    </div>
+                </div><!-- /.box-body -->
+            </form>
+        </div>
+        <div class="col-md-3">
+            <div class="box-right">
+                <div class="box-header with-border">
+                    <h5 class="box-title">Xuất bản</h5>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                    <a onclick="addPost()" class="btn btn-primary pull-right">Thêm bài viết</a>
+                    <div class="clearfix"></div>
+                </div>
+            </div><!-- /.box -->
+            <div class="box-right" id="box-cate">
+                <div class="box-header with-border">
+                    <h5 class="box-title">Danh mục bài viết</h5>
+                </div><!-- /.box-header -->
+                <div class="box-body" id="lstCate">
+                    <ul class="list-unstyled" id="lstCate">
+                        @foreach (var item in Model)
+                        {
+                            <li>
+                                <input type="checkbox" class="flat chk-check" value="@item.CategoryId" id="chk-@item.CategoryId" />
+                                <label for="chk-@item.CategoryId"> &nbsp; @item.CategoryName &nbsp;&nbsp;</label>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div><!-- /.box -->
+            <div class="box-right" id="box-cate">
+                <div class="box-header with-border">
+                    <h5 class="box-title">Tags <small>(Viết thường, có dấu)</small></h5>
+                </div>
+                <div class="box-body">
+                    <input id="tags_1" type="text" class="tags form-control" value="" />
+                    <div id="suggestions-container" style="position: relative; float: left; width: 250px; margin: 10px;"></div>
+           
+                </div>
+            </div>
+            <div class="box-right">
+                <div class="box-header with-border">
+                    <h5 class="box-title">Hình ảnh bìa</h5>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                    <div id="Imagecontainer"></div>
+                </div>
+                <div class="box-footer">
+                    <form id="FormUpload" method="post" enctype="multipart/form-data">
+                        <input type="file" name="Files" id="Files" style="display:none" />
+                    </form>
+                    <a class="btn btn-sm btn-primary" onclick="uploadImage()">Upload</a>
+                    <a class="btn btn-sm btn-info" onclick="showMedia()">Chọn ảnh có sẵn</a>
+                </div>
+            </div><!-- /.box -->
+        </div>
+    </div>
+</section><!-- /.content -->
+
+<div id="modalMedia" class="modal fade bs-example-modal-lg" data-backdrop="static" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title">Thư viện ảnh</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row" id="lstGallery">
+
+
+                </div>
+            </div> <!-- End modal-body -->
+        </div>
+    </div>
+</div>
+
+
+
+
+<script type="text/javascript" src="~/Scripts/cms/cms.add-post.js"></script>
+

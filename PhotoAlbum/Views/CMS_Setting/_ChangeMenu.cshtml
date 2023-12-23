@@ -1,0 +1,75 @@
+﻿@model CMSWebsite.Models.MenuWebDataModel
+@using CMSWebsite.Models
+
+<ol class='dd-list' id="lst-sort">
+    @foreach (var item in Model.ListMenuParent)
+    {
+        <li id="menu-@item.MenuId" data-id="@item.MenuId" class="dd-item">
+            <div class="dd-handle">
+                <img src="~/Images/cms/icon/edit.png" width="30" /> <span>@item.MenuName</span>
+            </div>
+            <div class="wrap-banner form-horizontal form-label-left row margin-bot">
+                <div class="col-md-10 col-lg-10 col-xs-12">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="companyName">
+                        Tiêu đề
+                    </label>
+                    <div class="col-md-9 col-sm-9 col-xs-12 margin-bot">
+                        <input type="text" value="@item.MenuName" id="title-@item.MenuId" name="title-@item.MenuId" class="form-control col-md-7 col-xs-12">
+                    </div>
+                    <div class="clearfix"></div>
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="companyName">
+                        Link
+                    </label>
+                    <div class="col-md-9 col-sm-9 col-xs-12">
+                        <input type="text" value="@item.URL" id="link-@item.MenuId" name="link-@item.MenuId" class="form-control col-md-7 col-xs-12">
+                    </div>
+                </div>
+
+                <div class="col-md-2 col-lg-2 col-xs-12">
+                    <input type="button" class="btn btn-danger btn-sm" value="X" onclick="deleteMenu(@item.MenuId)" style="position:absolute;top:20px;right:30px;" />
+                </div>
+                @*<input type="button" class="btn btn-danger btn-sm" value="X" onclick="deleteMenu(@item.MenuId)" style="position:absolute;top:20px;right:30px;" />*@
+            </div>
+
+            @{
+                List<Web_Menu> childs = Model.ListMenuChild.Where(o => o.ParentId == item.MenuId).ToList();
+                if (childs.Count > 0)
+                {
+                    <ol class="dd-list">
+                        @foreach (var itemchild in childs)
+                        {
+                            <li id="menu-@itemchild.MenuId" data-id="@itemchild.MenuId" class="dd-item">
+                                <div class="dd-handle">
+                                    <img src="~/Images/cms/icon/edit.png" width="30" /> <span>@itemchild.MenuName</span>
+                                </div>
+                                <div class="wrap-banner form-horizontal form-label-left row margin-bot">
+                                    <div class="col-md-10 col-lg-10 col-xs-12">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="companyName">
+                                            Tiêu đề
+                                        </label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12 margin-bot">
+                                            <input type="text" value="@itemchild.MenuName" id="title-@itemchild.MenuId" name="title-@itemchild.MenuId" class="form-control col-md-7 col-xs-12">
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="companyName">
+                                            Link
+                                        </label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            <input type="text" value="@itemchild.URL" id="link-@itemchild.MenuId" name="link-@itemchild.MenuId" class="form-control col-md-7 col-xs-12">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2 col-lg-2 col-xs-12">
+                                        <input type="button" class="btn btn-danger btn-sm" value="X" onclick="deleteMenu(@itemchild.MenuId)" style="position:absolute;top:20px;right:30px;" />
+                                    </div>
+                                    @*<input type="button" class="btn btn-danger btn-sm" value="X" onclick="deleteMenu(@item.MenuId)" style="position:absolute;top:20px;right:30px;" />*@
+                                </div>
+                            </li>
+                        }
+                    </ol>
+                }
+            }
+        </li>
+    }
+</ol>
+<input type="hidden" id="lstMenuID" name="lstMenuID" />

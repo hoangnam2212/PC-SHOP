@@ -1,0 +1,76 @@
+﻿
+@model  List<CMSWebsite.Models.Web_Banner>
+@{
+    ViewBag.Title = "Cài đặt banner";
+    Layout = "~/Views/Shared/CMS_MasterPage.cshtml";
+}
+
+<div class="">
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Cài đặt banner</h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <form id="FormUpload" method="post" enctype="multipart/form-data">
+
+                        <ol class='sort-banner' id="lst-sort">
+                            @foreach (var item in Model)
+            {
+                <li id="slider-@item.BannerID" value="@item.BannerID">
+                    <div class="wrap-banner form-horizontal form-label-left row">
+                        <div class="col-md-8 col-lg-8 col-xs-12">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="companyName">
+                                Tiêu đề :
+                            </label>
+                            <div class="col-md-8 col-sm-8 col-xs-12 margin-bot">
+                                <input type="text" value="@item.Title" id="title-@item.BannerID" name="title-@item.BannerID" onblur="updateTitle(@item.BannerID)" class="form-control col-md-7 col-xs-12">
+                            </div>
+                            <div class="clearfix"></div>
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="companyName">
+                                Đường dẫn :
+                            </label>
+                            <div class="col-md-8 col-sm-8 col-xs-12">
+                                <input type="text" value="@item.Link" readonly="readonly" id="link-@item.BannerID" name="link-@item.BannerID" class="form-control col-md-7 col-xs-12">
+                            </div>
+                            <div class="col-md-2 col-sm-2 col-xs-12 margin-bot">
+                                <input type="button" class="btn btn-primary btn-sm" onclick="uploadImage(@item.BannerID)" value="Chọn ảnh ..." />
+                                <input type="file" name="Files-@item.BannerID" id="Files-@item.BannerID" style="display:none" /> 
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 col-lg-3 col-xs-12" id="Imagecontainer-@item.BannerID">
+                            @if (item.Images != null)
+    {
+                        <img src="@item.Images" class="img-thumb-banner" alt="Ảnh banner" />
+}
+else
+{
+                        <img src="~/Images/cms/icon/user.png" class="img-thumb-banner" alt="Ảnh banner" />
+}
+                        </div>
+                        <div class="col-md-1 col-lg-1 col-xs-12">
+                            <input type="button" class="btn btn-danger btn-sm" value="X" onclick="deleteSlider(@item.BannerID)" />
+                        </div>
+                    </div>
+                    <div class="stt-banner">
+                        <span>@item.Position</span>
+                    </div>
+                </li>
+            }
+
+                        </ol>
+
+                        </form>
+                        <div>
+                            <a onclick="addSlider()" class="btn btn-primary" id="but-add">Thêm Slider</a>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="~/Scripts/cms/cms.slider.js"></script>

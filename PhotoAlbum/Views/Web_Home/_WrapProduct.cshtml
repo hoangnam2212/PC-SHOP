@@ -1,0 +1,46 @@
+﻿@model CMSWebsite.Models.Web_HomeIndexDataModel
+<div class="detai-products1">
+    <div class="products-grid">
+        <div class="products-grid row style_grid">
+            @foreach (var item in Model.LstProduct)
+            {
+                <div class="item col-lg-2d4 col-md-3 col-sm-4 col-xs-6 col-phone-12">
+                    <div class="item-inner">
+                        <div class="prd">
+                            <div class="item-img clearfix">
+                                <div class="ico-label"></div>
+                                <a class="product-image have-additional" title="@item.Name" href="@item.URLFriendly">
+                                    <span class="img-main">
+                                        <img src="@item.Images" alt="@item.Name" style="min-height:220px;">
+                                    </span>
+                                    @*<div class="img-pro-home" style="background-image:url(../..@item.Images)"></div>*@
+                                </a>
+                            </div>
+                            <div class="item-info">
+                                <div class="info-inner">
+                                    <div class="item-title">
+                                        <a title="@item.Name" href="@item.URLFriendly">
+                                            @item.Name
+                                        </a>
+                                    </div>
+                                    <div class="item-price">
+                                        <div class="price-box">
+                                            <span class="regular-price">
+                                                <span class="price">
+                                                    <span class="price1">@item.PriceRetailStr ₫</span>
+                                                    <span class="price2">120,000 ₫</span>
+                                                </span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>

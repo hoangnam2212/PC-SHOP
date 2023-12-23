@@ -1,0 +1,93 @@
+﻿@model CMSWebsite.Models.ListPostModel
+@{
+    ViewBag.Title = Model.Cate.CategoryName;
+    Layout = "~/Views/Shared/Web_MasterPage.cshtml";
+}
+
+<!-- breadcrumb_section - start
+       ================================================== -->
+<div class="breadcrumb_section">
+    <div class="container">
+        <ul class="breadcrumb_nav ul_li">
+            <li><a href="/">PC-SHOP</a></li>
+            <li>@Model.Cate.CategoryName</li>
+        </ul>
+    </div>
+</div>
+<!-- breadcrumb_section - end
+================================================== -->
+<!-- blog_section - start
+================================================== -->
+<section class="blog_section section_space">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col col-lg-12">
+                <div class="row">
+                    @foreach (var item in Model.LstPost)
+                    {
+
+                        <div class="col col-md-4 col-sm-6">
+                            <div class="bolg_standard">
+                                <a class="item_image" href="/@item.URLFriendly">
+                                    <img src="@item.PostFaceImage" alt="@item.URLFriendly">
+                                </a>
+                                <div class="item_content">
+                                    <ul class="post_meta ul_li">
+                                        <li>@item.PostCreateDate.Value.ToString("dd-MM-yyyy")</li>
+                                        <li><a href="#!">PC-SHOP</a></li>
+                                        <li>
+                                            <ul class="category_list ul_li">
+                                                <li><a href="@Model.Cate.CateURL">@Model.Cate.CategoryName</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                    <h3 class="item_title">
+                                        <a href="/blog/@item.URLFriendly">@item.PostTitle</a>
+                                    </h3>
+                                    @Html.Raw(item.PostDescription)
+                                    <a class="btn btn_gray" href="/@item.URLFriendly">Chi tiết</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="pagination_wrap p-0">
+                    <ul class="pagination_nav ul_li">
+                        <li class="active"><a href="#!">1</a></li>
+                        <li><a href="#!">2</a></li>
+                        <li><a href="#!">3</a></li>
+                        <li class="prev_btn"><a href="#!"><i class="fa-regular fa-angle-left"></i></a></li>
+                        <li class="next_btn"><a href="#!"><i class="fa-regular fa-angle-right"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- blog_section - end
+================================================== -->
+<!-- newsletter_section - start
+================================================== -->
+<section class="newsletter_section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col col-lg-6">
+                <h2 class="newsletter_title text-white">
+                    <i class="icofont-paper-plane"></i>
+                    Sign Up for Newsletter
+                </h2>
+            </div>
+            <div class="col col-lg-6">
+                <form action="#!">
+                    <div class="newsletter_form">
+                        <input type="email" name="email" placeholder="Enter your email address">
+                        <button type="submit" class="btn btn_danger">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- newsletter_section - end
+================================================== -->

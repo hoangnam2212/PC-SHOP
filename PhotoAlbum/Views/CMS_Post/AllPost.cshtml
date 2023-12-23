@@ -1,0 +1,59 @@
+﻿@model List<CMSWebsite.Models.PostView>
+@{
+    ViewBag.Title = "Tất cả bài viết";
+    Layout = "~/Views/Shared/CMS_MasterPage.cshtml";
+}
+
+
+<div class="page-title">
+    <div class="title_left">
+        <h3>Tất cả bài viết</h3>
+    </div>
+    <div class="title_right">
+
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12" id="tblShowCar">
+        <table id="example1" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Ảnh bìa</th>
+                    <th>Tên bài viết</th>
+                    <th>Danh mục</th>
+                    <th>Ngày viết</th>
+                    <th>Tác giả</th>
+                    <th width="100px">Công cụ</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Count != 0)
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.PostId</td>
+                            <td><img src="@item.ImgFace" height="50" /></td>
+                            <td>@item.PostTitle</td>
+                            <td>@item.PostCate</td>
+                            <td>@item.PostDate</td>
+                            <td>@item.PostAuthor</td>
+                            <td width="100px">
+                                <a href="#"><img src="~/Images/cms/icon/edit.png" width="25" height="25" title="Sửa bài viết" onclick="location.href='@Url.Action("ViewEdit", "CMS_Post", new { id = @item.PostId })'" /></a>&nbsp;
+                                <a href="/@item.UrlFriendly"><img src="~/Images/cms/icon/view.png" width="25" height="25" title="Xem bài viết" /></a>&nbsp;
+                                <a href="#"><img src="~/Images/cms/icon/delete.png" width="25" height="25" title="Xóa bài viết" onclick="deletePost(@item.PostId)" /></a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+
+    </div> <!-- End col-md-12  -->
+</div>
+
+
+<script type="text/javascript" src="~/Scripts/cms/cms.all-post.js"></script>
+

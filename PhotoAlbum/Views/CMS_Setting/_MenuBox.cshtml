@@ -1,0 +1,29 @@
+﻿@model CMSWebsite.Models.Web_Menu
+
+<li id="menu-@Model.MenuId" data-id="@Model.MenuId" class="dd-item">
+    <div class="dd-handle">
+        <img src="~/Images/cms/icon/edit.png" width="30" /> <span>@Model.MenuName</span>
+    </div>
+    <div class="wrap-banner form-horizontal form-label-left row margin-bot">
+        <div class="col-md-10 col-lg-10 col-xs-12">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="companyName">
+                Tiêu đề
+            </label>
+            <div class="col-md-9 col-sm-9 col-xs-12 margin-bot">
+                <input type="text" value="@Model.MenuName" id="title-@Model.MenuId" name="title-@Model.MenuId" class="form-control col-md-7 col-xs-12">
+            </div>
+            <div class="clearfix"></div>
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="companyName">
+                Link
+            </label>
+            <div class="col-md-9 col-sm-9 col-xs-12">
+                <input type="text" value="@Model.URL" id="link-@Model.MenuId" name="link-@Model.MenuId" class="form-control col-md-7 col-xs-12">
+            </div>
+        </div>
+
+        <div class="col-md-2 col-lg-2 col-xs-12">
+            <input type="button" class="btn btn-danger btn-sm" value="X" onclick="deleteMenu(@Model.MenuId)" style="position:absolute;top:20px;right:30px;" />
+        </div>
+        @*<input type="button" class="btn btn-danger btn-sm" value="X" onclick="deleteMenu(@item.MenuId)" style="position:absolute;top:20px;right:30px;" />*@
+    </div>
+</li>

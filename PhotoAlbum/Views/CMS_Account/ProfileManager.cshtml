@@ -1,0 +1,262 @@
+﻿@model CMSWebsite.Models.ProfileDataModel
+@{
+    ViewBag.Title = "Thông tin cá nhân";
+    Layout = "~/Views/Shared/CMS_MasterPage.cshtml";
+}
+
+<div class="">
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Thông tin cá nhân</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li>
+                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <div class="col-md-3 col-sm-3 col-xs-12 profile_left">
+                        <div class="profile_img">
+                            <div id="Imagecontainer">
+                                <!-- Current avatar -->
+                                <img class="img-responsive avatar-view" src="@Model.User.ImgFace" alt="Avatar" title="Change the avatar">
+                            </div>
+                        </div>
+                        <h3>@Model.User.FullName</h3>
+                        <ul class="list-unstyled user_data">
+                            <li>
+                                <i class="fa fa-map-marker user-profile-icon"></i> @Model.User.Address
+                            </li>
+                            <li>
+                                <i class="fa fa-mobile-phone user-profile-icon"></i> @Model.User.Phone
+                            </li>
+                            <li class="m-top-xs">
+                                <i class="fa fa-calendar user-profile-icon"></i> @Model.User.Birthday.Value.ToString("dd/MM/yyyy")
+                            </li>
+                        </ul>
+                        <a class="btn btn-success btn-sm" onclick="uploadImage()"><i class="fa fa-upload m-right-xs"></i> &nbsp; Ảnh đại diện</a>
+                        <a class="btn btn-primary btn-sm" onclick="viewInputChange()"><i class="fa fa-edit m-right-xs"></i>  &nbsp; Đổi mật khẩu</a>
+                        <input type="file" name="Files" id="Files" style="display:none" />
+                        <br />
+                        <!-- start skills -->
+                    </div>
+                    <div class="col-md-9 col-sm-9 col-xs-12">
+                        <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                            <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                                <li role="presentation" class="active">
+                                    <a href="#info" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Thông tin</a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="#log" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Nhật ký hoạt động</a>
+                                </li>
+                            </ul>
+                            <div id="myTabContent" class="tab-content">
+                                <div role="tabpanel" class="tab-pane fade active in" id="info" aria-labelledby="home-tab">
+                                    <form id="FormUpload" method="post" class="form-horizontal">
+                                        <div id="frmChangePass" class="bg-gray-light display-none" style="margin:10px 0px;padding:10px 0px;">
+                                            <div class="form-group">
+                                                <label for="txtPassOld" class="col-sm-4 control-label">Mật khẩu hiện tại : </label>
+                                                <div class="col-sm-4">
+                                                    <input type="password" class="form-control" id="txtPassOld" name="txtPassOld">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="txtPassNew" class="col-sm-4 control-label">Mật khẩu mới : </label>
+                                                <div class="col-sm-4">
+                                                    <input type="password" class="form-control" id="txtPassNew" name="txtPassNew">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="txtPassRepeat" class="col-sm-4 control-label">Nhập lại mật khẩu mới : </label>
+                                                <div class="col-sm-4">
+                                                    <input type="password" class="form-control" id="txtPassRepeat" name="txtPassRepeat">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-4 col-sm-offset-4"><span class="text-red" id="noti"></span><span class="text-success" id="notiSuccess"></span></label>
+                                                <div class="col-sm-8 col-sm-offset-4">
+                                                    <a onclick="updatePassword()" class="btn btn-primary btn-sm"><i class="fa fa-save"></i> &nbsp; Lưu thay đổi</a>
+                                                    <a onclick="cancel()" class="btn btn-danger btn-sm"><i class="fa fa-close"></i> &nbsp; Hủy bỏ</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="txtFullName" class="col-sm-2 control-label">Họ và tên : </label>
+                                            <div class="col-sm-4">
+                                                <input type="text" class="form-control" id="txtFullName" name="txtFullName" value="@Model.User.FullName" placeholder="Họ tên">
+                                            </div>
+                                            <label for="txtBirdDay" class="col-sm-2 control-label">Ngày sinh : </label>
+                                            <div class="col-sm-3">
+                                                <input type="text" class="form-control" id="txtBirdDay" name="txtBirdDay" value="@Model.User.Birthday.Value.ToString("dd/MM/yyyy")">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="txtEmail" class="col-sm-2 control-label">Email :</label>
+                                            <div class="col-sm-4">
+                                                <input type="email" class="form-control" id="txtEmail" name="txtEmail" value="@Model.User.Email" placeholder="Email">
+                                            </div>
+                                            <label for="txtPhone" class="col-sm-2 control-label">Điện thoại :</label>
+                                            <div class="col-sm-3">
+                                                <input type="text" class="form-control" id="txtPhone" name="txtPhone" value="@Model.User.Phone" placeholder="Điện thoại">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="txtAddress" class="col-sm-2 control-label">Địa chỉ</label>
+                                            <div class="col-sm-9">
+                                                <textarea class="form-control" name="txtAddress" id="txtAddress">@Model.User.Address</textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-2 col-sm-10">
+                                                <button onclick="updateProfile()" type="submit" class="btn btn-primary">Cập nhật</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="log" aria-labelledby="profile-tab">
+                                    <ul class="messages">
+
+                                        @foreach (var item in Model.Logs)
+    {
+                                    <li>
+                                        <img src="@Model.User.ImgFace" class="avatar" alt="Avatar">
+                                        <div class="message_date">
+                                            <h3 class="date text-info">@item.Date.ToString("HH:mm")</h3>
+                                            <p class="month">@item.Date.ToString("dd/MM/yyyy")</p>
+                                        </div>
+                                        <div class="message_wrapper">
+                                            <h4 class="heading">@item.Fullname : @item.Title</h4>
+                                            <blockquote class="message" style="font-size:15px;">@item.ContentLog</blockquote>
+                                            <br />
+                                            
+                                        </div>
+                                    </li>
+}
+                                   
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#txtBirdDay').daterangepicker(optionSingleDate);
+    });
+
+    function uploadImage() {
+        $("#Files").trigger('click');
+        $('input[name=Files]').change(function (evt) { singleFileSelected(evt); });
+    }
+
+    function singleFileSelected(evt) {
+        //var selectedFile = evt.target.files can use this  or select input file element and access it's files object
+        var selectedFile = ($("#Files"))[0].files[0];//FileControl.files[0];
+        if (selectedFile) {
+            var imageType = /image.*/;
+            if (selectedFile.type.match(imageType)) {
+                if (selectedFile.size < 2097152) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        $("#Imagecontainer").empty();
+                        var dataURL = reader.result;
+                        var img = new Image()
+                        img.src = dataURL;
+                        img.width = 120;
+                        img.className = "thumb";
+                        $("#Imagecontainer").append(img);
+                    };
+                    reader.readAsDataURL(selectedFile);
+                } else {
+                    showNotifyError("Ảnh không được quá 2 MB", "Mời thử lại", 3000);
+                }
+            }
+        }
+    }
+
+    $("#Files").change(function () {
+        UploadFile();
+    });
+
+    function UploadFile() {
+        if ($("#Files")[0].files[0].size > 2097152) {
+            return;
+        }
+        var xhr = new XMLHttpRequest();
+        var fd = new FormData();
+
+        fd.append("file", $("#Files")[0].files[0]);
+        xhr.open("POST", "/CMS_File/UploadImgFace", true);
+        xhr.send(fd);
+
+        xhr.addEventListener("load", function (event) {
+            showNotifySuccess("Thay ảnh đại diện thành công", "Đã lưu vào cơ sở dữ liệu", 3000);
+            location.href = "@Url.Action("ProfileManager", "CMS_Account")";
+        }, false);
+    }
+
+    function viewInputChange() {
+        $('#frmChangePass').show(300);
+    }
+    function cancel() {
+        $('#frmChangePass').hide(300);
+    }
+
+    function updatePassword() {
+        var passOld = $('#txtPassOld').val();
+        var passNew = $('#txtPassNew').val();
+        var passRepeat = $('#txtPassRepeat').val();
+        if (passOld.trim() == "" || passNew.trim() == "" || passRepeat.trim() == "") {
+            showNotifyError("Bạn cần nhập đầy đủ thông tin","Mời thử lại");
+        } else if (passNew != passRepeat) {
+            showNotifyError("Mật khẩu chưa khớp", "Mời thử lại");
+        } else {
+            $.ajax({
+                type: "POST",
+                url: location.protocol + '//' + location.host + '/Users/UpdatePassword',
+                data: { passOld: passOld, passNew: passNew, passRepeat: passRepeat },
+                dataType: "html",
+                success: function (content) {
+                    if (content.indexOf("OK") != -1) {
+                        showNotifySuccess("Thay đổi mật khẩu thành công", "Đã lưu vào hệ thống");
+                        $('#txtPassOld').val("");
+                        $('#txtPassNew').val("");
+                        $('#txtPassRepeat').val("");
+                    } else {
+                        showNotifyError("Sai mật khẩu", "Mời thử lại");
+                    }
+                },
+                error: function () {
+                    showNotifyError("Xảy ra lỗi kết nối mạng", "Mời thử lại");
+                }
+            });
+        }
+    }
+
+    function updateProfile() {
+        $.ajax({
+            type: "POST",
+            url: location.protocol + '//' + location.host + '/CMS_Account/UpdateProfile',
+            data: $('#FormUpload').serialize(),
+            dataType: "html",
+            success: function (content) {
+                if (content.indexOf("Lỗi") == -1) {
+                    location.reload();
+                } else {
+                    showNotifyError("Nhập sai định dạng", "Mời thử lại");
+                }
+            },
+            error: function () {
+            }
+        });
+    }
+</script>

@@ -1,0 +1,61 @@
+﻿@model CMSWebsite.Models.PortfolioCategoryModel
+@{
+    ViewBag.Title = "Danh mục dự án";
+    Layout = "~/Views/Shared/CMS_MasterPage.cshtml";
+}
+
+
+
+<div class="clearfix"></div>
+<div class="row">
+    <div class="col-md-5 col-sm-5 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h4 class="box-title" id="actionTitle">Danh mục dự án</h4>
+            </div><!-- /.box-header -->
+            <!-- form start -->
+            <div class="x_content">
+                <div class="form-group" id="frmCateName">
+                    <label for="cateName">Tên danh mục</label>
+                    <input type="text" class="form-control" id="cateName" placeholder="Nhập tên danh mục">
+                </div>
+                <div class="form-group" id="div-select">
+                    <label>Danh mục cha</label>
+                    <select id="cateParent" class="form-control select2" style="width: 100%;">
+                        <option value="0" selected="selected">Không có</option>
+                        @foreach (var item in Model.LstCate)
+                        {
+                            if (item.ParentId == 0)
+                            {
+                                <option value="@item.CategoryId">@item.CategoryName</option>
+                            }
+                        }
+                    </select>
+                </div><!-- /.form-group -->
+                @*<div class="form-group">
+                        <label for="txtImgHomePage">Ảnh quảng cáo &nbsp;</label><br />
+                        <a onclick="uploadImage(1)" class="btn btn-primary"> Upload</a>
+
+                        <input type="file" name="Files1" id="Files1" style="display:none" />
+                        <div id="Imagecontainer1" style="margin-top:10px;"><img src="" height="35" /></div>
+                    </div>*@
+                <a onclick="addCate()" class="btn btn-primary pull-right" id="but-add">Thêm mới</a>
+                <a onclick="cancelCate()" class="btn btn-danger pull-right" id="but-cancel" style="margin-left:20px;display:none;">Hủy bỏ</a>
+                <a onclick='saveEdit()' class="btn btn-info pull-right" id="but-save" style="display:none">Lưu</a>
+
+                <input type="hidden" id="idCateEdit" value="0" />
+            </div>
+        </div><!-- /.box -->
+    </div>
+    <div class="col-md-7 col-sm-7 col-xs-12">
+        <div class="x_panel">
+            <div class="x_content" id="div-content">
+                @Html.Partial("_TblPostCate", Model.LstCate)
+            </div><!-- /.box-body -->
+        </div><!-- /.box -->
+    </div>
+</div>
+
+<script src="~/Scripts/cms/cms.category-portfolio.js" type="text/javascript"></script>
+
+

@@ -1,0 +1,115 @@
+﻿@model CMSWebsite.Models.Web_Config
+@{
+    ViewBag.Title = "Cấu hình thông tin Website";
+    Layout = "~/Views/Shared/CMS_MasterPage.cshtml";
+}
+
+<div class="">
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Cấu hình thông tin cơ bản website</h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <form id="frmSetting" name="frmSetting" data-parsley-validate="" class="form-horizontal form-label-left">
+                        <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="companyName">
+                                Tên công ty / tổ chức :
+                            </label>
+                            <div class="col-md-8 col-sm-8 col-xs-12">
+                                <input type="text" value="@Model.CompanyName" id="companyName" name="companyName" class="form-control col-md-7 col-xs-12">
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="address">
+                                Địa chỉ :
+                            </label>
+                            <div class="col-md-8 col-sm-8 col-xs-12">
+                                <input type="text" value="@Model.Address" id="address" name="address" class="form-control col-md-7 col-xs-12">
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12">
+                                Hotline :
+                            </label>
+                            <div class="col-md-2 col-sm-2 col-xs-12">
+                                <input type="text" value="@Model.Hotline" id="hotline" name="hotline" class="form-control col-md-7 col-xs-12">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12">
+                                Email :
+                            </label>
+                            <div class="col-md-5 col-sm-5 col-xs-12">
+                                <input type="text" value="@Model.Email" id="email" name="email" class="form-control col-md-7 col-xs-12">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12">
+                                Facebook :
+                            </label>
+                            <div class="col-md-5 col-sm-5 col-xs-12">
+                                <input type="text" value="@Model.Facebook" id="facebook" name="facebook" class="form-control col-md-7 col-xs-12">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12">
+                                Google+ :
+                            </label>
+                            <div class="col-md-5 col-sm-5 col-xs-12">
+                                <input type="text" value="@Model.GooglePlus" id="googleplus" name="googleplus" class="form-control col-md-7 col-xs-12">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12">
+                                Youtube :
+                            </label>
+                            <div class="col-md-5 col-sm-5 col-xs-12">
+                                <input type="text" value="@Model.Youtube" id="youtube" name="youtube" class="form-control col-md-7 col-xs-12">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12 col-sm-12 col-xs-12" style="text-align:right">
+                                <a class="btn btn-primary" onclick="updateConfig()"><i class="fa fa-refresh"></i> &nbsp; Cập nhật</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @*<div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Cài đặt thông tin nâng cao</h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <form id="frmSettingAdvance" name="frmSettingAdvance" data-parsley-validate="" class="form-horizontal form-label-left">
+                        <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="analytics">
+                                Mã theo dõi Analytics :
+                            </label>
+                            <div class="col-md-7 col-sm-7 col-xs-12">
+                                <textarea rows="11" id="analytics" name="analytics" class="form-control">@Model.CodeAnalytics</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12 col-sm-12 col-xs-12" style="text-align:right">
+                                <a class="btn btn-primary" onclick="updateConfig()"><i class="fa fa-refresh"></i> &nbsp; Cập nhật</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>*@
+</div>
+
+<script type="text/javascript" src="~/Scripts/cms/cms.config.js"> </script>

@@ -1,0 +1,257 @@
+﻿
+
+@model CMSWebsite.Models.MenuInitRoleModel
+@{
+    int count = Model.LstParent.Count % 3 == 0 ? Model.LstParent.Count / 3 : (Model.LstParent.Count / 3) + 1;
+    int rID = Model.RoleIDEdit;
+}
+
+
+
+@for (int i = 0; i < count; i++)
+{
+    <div class="row" style="padding:0px 15px;">
+        @for (int j = 0; j < 3; j++)
+        {
+            if ((3 * i + j) < Model.LstParent.Count)
+            {
+                <div class="col-md-4 col-sm-4 col-xs-4">
+                    <h4 class="title">@Model.LstParent[3 * i + j].MenuName</h4>
+                    <div class="ln_solid"></div>
+                    <ul class="list-unstyled lst-role">
+                        @{
+                            var lstChild = Model.LstChild.Where(o => o.ParentID == @Model.LstParent[3 * i + j].MenuID).ToList();
+                            foreach (var itemChild in lstChild)
+                            {
+                                var lstFunc = Model.LstMenuRole.Where(o => o.MenuID == itemChild.MenuID && o.RoleID == rID).FirstOrDefault();
+                                <li>
+                                    @if (lstFunc != null)
+                                    {
+                                        <input type="checkbox" value="@itemChild.MenuID" checked class="flat chkItemChildEdit">
+                                    }
+                                    else
+                                    {
+                                        <input type="checkbox" value="@itemChild.MenuID" class="flat chkItemChildEdit">
+                                    }
+
+                                    <a data-toggle="collapse" href="#collapse-edit-@itemChild.MenuID">
+                                        &nbsp; &nbsp;
+                                        @itemChild.MenuName &nbsp;
+                                        <i class="fa fa-chevron-down"></i>
+
+                                    </a>
+
+                                    <div id="collapse-edit-@itemChild.MenuID" class="panel-collapse collapse" style="float:right;width:100%;">
+                                        <ul class="to_do" style="width:80%; margin-left:20px;">
+                                            @if (lstFunc != null)
+                                            {
+                                                <li>
+                                                    <p>
+                                                        @if (lstFunc.ViewData)
+                                                        {
+                                                            <input type="checkbox" id="view-@itemChild.MenuID" value="@itemChild.MenuID" alt="1" checked class="flat chkRoleEdit chk-edit-menu-@itemChild.MenuID"><span> &nbsp; Xem</span>
+                                                        }
+                                                        else
+                                                        {
+                                                            <input type="checkbox" id="view-@itemChild.MenuID" value="@itemChild.MenuID" alt="1" class="flat chkRoleEdit chk-edit-menu-@itemChild.MenuID"><span> &nbsp; Xem </span>
+                                                        }
+                                                    </p>
+                                                </li>
+                                                <li>
+                                                    <p>
+                                                        @if (lstFunc.AddData)
+                                                        {
+                                                            <input type="checkbox" id="add-@itemChild.MenuID" value="@itemChild.MenuID" alt="2" checked class="flat chkRoleEdit chk-edit-menu-@itemChild.MenuID"> <span>&nbsp; Thêm</span>
+                                                        }
+                                                        else
+                                                        {
+                                                            <input type="checkbox" id="add-@itemChild.MenuID" value="@itemChild.MenuID" alt="2" class="flat chkRoleEdit chk-edit-menu-@itemChild.MenuID"> <span>&nbsp; Thêm</span>
+                                                        }
+                                                    </p>
+                                                </li>
+                                                <li>
+                                                    <p>
+                                                        @if (lstFunc.EditData)
+                                                        {
+                                                            <input type="checkbox" id="edit-@itemChild.MenuID" value="@itemChild.MenuID" alt="3" checked class="flat chkRoleEdit chk-edit-menu-@itemChild.MenuID"> <span>&nbsp; Sửa</span>
+                                                        }
+                                                        else
+                                                        {
+                                                            <input type="checkbox" id="edit-@itemChild.MenuID" value="@itemChild.MenuID" alt="3" class="flat chkRoleEdit chk-edit-menu-@itemChild.MenuID"><span>&nbsp; Sửa</span>
+                                                        }
+                                                    </p>
+                                                </li>
+                                                <li>
+                                                    <p>
+                                                        @if (lstFunc.DelData)
+                                                        {
+                                                            <input type="checkbox" id="del-@itemChild.MenuID" value="@itemChild.MenuID" alt="4" checked class="flat chkRoleEdit chk-edit-menu-@itemChild.MenuID"> <span>&nbsp; Xóa</span>
+                                                        }
+                                                        else
+                                                        {
+                                                            <input type="checkbox" id="del-@itemChild.MenuID" value="@itemChild.MenuID" alt="4" class="flat chkRoleEdit chk-edit-menu-@itemChild.MenuID"><span> &nbsp; Xóa</span>
+                                                        }
+                                                    </p>
+                                                </li>
+                                            }
+                                            else
+                                            {
+                                                <li>
+                                                    <p>
+
+                                                        <input type="checkbox" id="view-@itemChild.MenuID" value="@itemChild.MenuID" alt="1" class="flat chkRoleEdit chk-edit-menu-@itemChild.MenuID"> &nbsp; Xem
+                                                    </p>
+                                                </li>
+                                                <li>
+                                                    <p>
+                                                        <input type="checkbox" id="add-@itemChild.MenuID" value="@itemChild.MenuID" alt="2" class="flat chkRoleEdit chk-edit-menu-@itemChild.MenuID"> &nbsp;Thêm
+                                                    </p>
+                                                </li>
+                                                <li>
+                                                    <p>
+                                                        <input type="checkbox" id="edit-@itemChild.MenuID" value="@itemChild.MenuID" alt="3" class="flat chkRoleEdit chk-edit-menu-@itemChild.MenuID"> &nbsp;Sửa
+                                                    </p>
+                                                </li>
+                                                <li>
+                                                    <p>
+                                                        <input type="checkbox" id="del-@itemChild.MenuID" value="@itemChild.MenuID" alt="4" class="flat chkRoleEdit chk-edit-menu-@itemChild.MenuID"> &nbsp;Xóa
+                                                    </p>
+                                                </li>
+                                            }
+                                        </ul>
+                                    </div>
+                                </li>
+                            }
+                            if (lstChild.Count == 0)
+                            {
+                                var lstFunc = Model.LstMenuRole.Where(o => o.MenuID == Model.LstParent[3 * i + j].MenuID && o.RoleID == rID).FirstOrDefault();
+                                <li>
+                                    @if (lstFunc != null)
+                                    {
+                                        <input type="checkbox" value="@Model.LstParent[3 * i + j].MenuID" checked class="flat chkItemChildEdit">
+                                    }
+                                    else
+                                    {
+                                        <input type="checkbox" value="@Model.LstParent[3 * i + j].MenuID" class="flat chkItemChildEdit">
+                                    }
+                                    <a data-toggle="collapse" href="#collapse-edit-@Model.LstParent[3 * i + j].MenuID">
+                                        &nbsp;&nbsp;
+                                        @Model.LstParent[3 * i + j].MenuName &nbsp;
+                                        <i class="fa fa-chevron-down"></i>
+
+                                    </a>
+
+                                    <div id="collapse-edit-@Model.LstParent[3 * i + j].MenuID" class="panel-collapse collapse" style="float:right;width:100%;">
+                                        <ul class="to_do" style="width:80%; margin-left:20px;">
+
+                                            @if (lstFunc != null)
+    {
+                                        <li>
+                                            <p>
+                                                @if (lstFunc.ViewData)
+        {
+                                        <input type="checkbox" id="view-@Model.LstParent[3 * i + j].MenuID" value="@Model.LstParent[3 * i + j].MenuID" alt="1" checked class="flat chkRoleEdit chk-edit-menu-@Model.LstParent[3 * i + j].MenuID"><span> &nbsp; Xem</span>
+}
+else
+{
+                                        <input type="checkbox" id="view-@Model.LstParent[3 * i + j].MenuID" value="@Model.LstParent[3 * i + j].MenuID" alt="1" class="flat chkRoleEdit chk-edit-menu-@Model.LstParent[3 * i + j].MenuID"><span> &nbsp; Xem </span>
+}
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <p>
+                                                @if (lstFunc.AddData)
+        {
+                                        <input type="checkbox" id="add-@Model.LstParent[3 * i + j].MenuID" value="@Model.LstParent[3 * i + j].MenuID" alt="2" checked class="flat chkRoleEdit chk-edit-menu-@Model.LstParent[3 * i + j].MenuID"> <span>&nbsp; Thêm</span>
+}
+else
+{
+                                        <input type="checkbox" id="add-@Model.LstParent[3 * i + j].MenuID" value="@Model.LstParent[3 * i + j].MenuID" alt="2" class="flat chkRoleEdit chk-edit-menu-@Model.LstParent[3 * i + j].MenuID"> <span>&nbsp; Thêm</span>
+}
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <p>
+                                                @if (lstFunc.EditData)
+        {
+                                        <input type="checkbox" id="edit-@Model.LstParent[3 * i + j].MenuID" value="@Model.LstParent[3 * i + j].MenuID" alt="3" checked class="flat chkRoleEdit chk-edit-menu-@Model.LstParent[3 * i + j].MenuID"> <span>&nbsp; Sửa</span>
+}
+else
+{
+                                        <input type="checkbox" id="edit-@Model.LstParent[3 * i + j].MenuID" value="@Model.LstParent[3 * i + j].MenuID" alt="3" class="flat chkRoleEdit chk-edit-menu-@Model.LstParent[3 * i + j].MenuID"><span>&nbsp; Sửa</span>
+}
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <p>
+                                                @if (lstFunc.DelData)
+        {
+                                        <input type="checkbox" id="del-@Model.LstParent[3 * i + j].MenuID" value="@Model.LstParent[3 * i + j].MenuID" alt="4" checked class="flat chkRoleEdit chk-edit-menu-@Model.LstParent[3 * i + j].MenuID"> <span>&nbsp; Xóa</span>
+}
+else
+{
+                                        <input type="checkbox" id="del-@Model.LstParent[3 * i + j].MenuID" value="@Model.LstParent[3 * i + j].MenuID" alt="4" class="flat chkRoleEdit chk-edit-menu-@Model.LstParent[3 * i + j].MenuID"><span> &nbsp; Xóa</span>
+}
+                                            </p>
+                                        </li>
+}
+else
+{
+                                        <li>
+                                            <p>
+
+                                                <input type="checkbox" id="view-@Model.LstParent[3 * i + j].MenuID" value="@Model.LstParent[3 * i + j].MenuID" alt="1" class="flat chkRoleEdit chk-edit-menu-@Model.LstParent[3 * i + j].MenuID"> &nbsp; Xem
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <p>
+                                                <input type="checkbox" id="add-@Model.LstParent[3 * i + j].MenuID" value="@Model.LstParent[3 * i + j].MenuID" alt="2" class="flat chkRoleEdit chk-edit-menu-@Model.LstParent[3 * i + j].MenuID"> &nbsp;Thêm
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <p>
+                                                <input type="checkbox" id="edit-@Model.LstParent[3 * i + j].MenuID" value="@Model.LstParent[3 * i + j].MenuID" alt="3" class="flat chkRoleEdit chk-edit-menu-@Model.LstParent[3 * i + j].MenuID"> &nbsp;Sửa
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <p>
+                                                <input type="checkbox" id="del-@Model.LstParent[3 * i + j].MenuID" value="@Model.LstParent[3 * i + j].MenuID" alt="4" class="flat chkRoleEdit chk-edit-menu-@Model.LstParent[3 * i + j].MenuID"> &nbsp;Xóa
+                                            </p>
+                                        </li>
+}
+
+
+
+                                        </ul>
+                                    </div>
+                                </li>
+                            }
+                        }
+                    </ul>
+                </div>
+            }
+
+        }
+    </div>
+}
+
+<script>
+    $(document).ready(function () {
+        $('input.flat').iCheck({
+            checkboxClass: 'icheckbox_flat-green',
+            radioClass: 'iradio_flat-green'
+        });
+    });
+    $('input.chkItemChildEdit').on('ifToggled', function (event) {
+        var chk = this.checked;
+        var id = this.value;
+        $('input.chk-edit-menu-' + id).each(function () {
+            if (chk == true) { $(this).iCheck('check'); }
+            else {
+                $(this).iCheck('uncheck');
+            }
+        });
+    });
+</script>
+
+

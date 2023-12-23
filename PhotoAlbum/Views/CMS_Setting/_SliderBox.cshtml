@@ -1,0 +1,44 @@
+﻿@model CMSWebsite.Models.Web_Banner
+
+
+<li id="slider-@Model.BannerID" value="@Model.BannerID">
+    <div class="wrap-banner form-horizontal form-label-left row">
+        <div class="col-md-8 col-lg-8 col-xs-12">
+            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="companyName">
+                Tiêu đề :
+            </label>
+            <div class="col-md-8 col-sm-8 col-xs-12 margin-bot">
+                <input type="text" value="@Model.Title" id="title-@Model.BannerID" name="title-@Model.BannerID" onblur="updateTitle(@Model.BannerID)" class="form-control col-md-7 col-xs-12">
+            </div>
+
+            <div class="clearfix"></div>
+            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="companyName">
+                Đường dẫn :
+            </label>
+            <div class="col-md-8 col-sm-8 col-xs-12">
+                <input type="text" value="@Model.Link" readonly="readonly" id="link-@Model.BannerID" name="link-@Model.BannerID" class="form-control col-md-7 col-xs-12">
+            </div>
+            <div class="col-md-2 col-sm-2 col-xs-12 margin-bot">
+                <input type="button" class="btn btn-primary btn-sm" onclick="uploadImage(@Model.BannerID)" value="Chọn ảnh ..." />
+                <input type="file" name="Files-@Model.BannerID" id="Files-@Model.BannerID" style="display:none" />
+            </div>
+        </div>
+
+        <div class="col-md-3 col-lg-3 col-xs-12" id="Imagecontainer-@Model.BannerID">
+            @if (Model.Images != null)
+            {
+                <img src="@Model.Images" class="img-thumb-banner" alt="Ảnh banner" />
+            }
+            else
+            {
+                <img src="~/Images/cms/icon/user.png" class="img-thumb-banner" alt="Ảnh banner" />
+            }
+        </div>
+        <div class="col-md-1 col-lg-1 col-xs-12">
+            <input type="button" class="btn btn-danger btn-sm" value="X" onclick="deleteSlider(@Model.BannerID)" />
+        </div>
+    </div>
+    <div class="stt-banner">
+        <span>@Model.Position</span>
+    </div>
+</li>

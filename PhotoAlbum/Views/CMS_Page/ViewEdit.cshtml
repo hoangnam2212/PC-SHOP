@@ -1,0 +1,55 @@
+﻿@model CMSWebsite.Models.EditPostModel
+@{
+    ViewBag.Title = "Sửa trang ";
+    Layout = "~/Views/Shared/CMS_MasterPage.cshtml";
+}
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="form-group" id="box-title">
+                <input type="text" class="form-control" id="postTitle" placeholder="Nhập tiêu đề trang" value="@Model.PostEdit.PostTitle">
+            </div>
+            <div style="display:block">
+                <textarea id="editor1" name="editor1" rows="30" cols="80">@Model.PostEdit.PostContent</textarea>
+            </div>
+
+            <div class="box-header with-border">
+                <h5 class="box-title">Thông tin SEO</h5>
+            </div><!-- /.box-header -->
+            <form role="form" class="form-horizontal">
+                <div class="box-body">
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">SEO Keywords</label>
+                        <div class="col-sm-10">
+                            <input type="hidden" value="@Model.PostEdit.PostId" id="editId" />
+                            <input type="text" class="form-control" id="seoKeyword" placeholder="Từ khóa" value="@Model.PostEdit.PostSeoKeyword">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">SEO Description</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" rows="3" id="seoDesc" placeholder="Mô tả ...">@Model.PostEdit.PostSeoDesc</textarea>
+                        </div>
+                    </div>
+                </div><!-- /.box-body -->
+            </form>
+        </div>
+        <div class="col-md-3">
+            <div class="box-right">
+                <div class="box-header with-border">
+                    <h5 class="box-title">Xuất bản</h5>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                    <a onclick="editPage()" class="btn btn-primary pull-right">Sửa trang</a>
+                    <div class="clearfix"></div>
+                </div>
+            </div><!-- /.box -->
+        </div>
+    </div>
+</section><!-- /.content -->
+
+<script type="text/javascript" src="~/Scripts/cms/cms.edit-page.js"></script>
+
+

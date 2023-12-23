@@ -1,0 +1,581 @@
+﻿@{
+    ViewBag.Title = "PC-SHOP Nâng tầng không gian làm việc";
+    Layout = "~/Views/Shared/Web_MasterPage.cshtml";
+}
+@model CMSWebsite.Models.Web_HomeIndexDataModel
+
+<!-- backtotop - start -->
+<div class="backtotop">
+    <a href="#" class="scroll">
+        <i class="far fa-arrow-up"></i>
+    </a>
+</div>
+<!-- backtotop - end -->
+<!-- preloader - start -->
+<div id="preloader"></div>
+<!-- preloader - end -->
+<!-- main body - start
+================================================== -->
+<main>
+
+    <!-- product quick view modal - start
+    ================================================== -->
+    <div class="modal fade" id="quickview_popup" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalToggleLabel2">Product Quick View</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="product_details">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col col-lg-6">
+                                    <div class="product_details_image p-0">
+                                        <img src="~/Images/web/details/product_details_img_1.webp" alt="PC-SHOP-Trang-Tri-May-Tinh-Hai-Phong">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="product_details_content">
+                                        <h2 class="item_title">CURREN 8109 Watches</h2>
+                                        @*<p>
+                                            It is a long established fact that a reader will be distracted eget velit. Donec ac tempus ante. Fusce ultricies massa massa. Fusce aliquam, purus eget sagittis vulputate
+                                        </p>*@
+                                        <div class="item_review">
+                                            <ul class="rating_star ul_li">
+                                                <li><i class="fa-solid fa-star"></i></li>
+                                                <li><i class="fa-solid fa-star"></i></li>
+                                                <li><i class="fa-solid fa-star"></i></li>
+                                                <li><i class="fa-solid fa-star"></i></li>
+                                                <li><i class="fa-solid fa-star"></i></li>
+                                            </ul>
+                                            <span class="review_value">3 Rating(s)</span>
+                                        </div>
+                                        <div class="item_price">
+                                            <span>$620.00</span>
+                                            <del>$720.00</del>
+                                        </div>
+                                        <hr>
+                                        <div class="item_attribute">
+                                            <h3 class="title_text">Options <span class="underline"></span></h3>
+                                            <form action="#">
+                                                <div class="row">
+                                                    <div class="col col-md-6">
+                                                        <div class="select_option clearfix">
+                                                            <h4 class="input_title">Size *</h4>
+                                                            <select>
+                                                                <option data-display="- Please select -">Choose A Option</option>
+                                                                <option value="1">Some option</option>
+                                                                <option value="2">Another option</option>
+                                                                <option value="3" disabled>A disabled option</option>
+                                                                <option value="4">Potato</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col col-md-6">
+                                                        <div class="select_option clearfix">
+                                                            <h4 class="input_title">Color *</h4>
+                                                            <select>
+                                                                <option data-display="- Please select -">Choose A Option</option>
+                                                                <option value="1">Some option</option>
+                                                                <option value="2">Another option</option>
+                                                                <option value="3" disabled>A disabled option</option>
+                                                                <option value="4">Potato</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <span class="repuired_text">Repuired Fiields *</span>
+                                            </form>
+                                        </div>
+                                        <div class="quantity_wrap">
+                                            <form action="#">
+                                                <div class="quantity_input">
+                                                    <button type="button" class="input_number_decrement">
+                                                        <i class="fal fa-minus"></i>
+                                                    </button>
+                                                    <input class="input_number" type="text" value="1">
+                                                    <button type="button" class="input_number_increment">
+                                                        <i class="fal fa-plus"></i>
+                                                    </button>
+                                                </div>
+                                            </form>
+                                            <div class="total_price">
+                                                Total: $620,99
+                                            </div>
+                                        </div>
+                                        <ul class="default_btns_group ul_li">
+                                            <li><a class="addtocart_btn" href="shop_details.html">Add To Cart</a></li>
+                                            <li><a href="#!"><i class="fa-solid fa-arrows-rotate"></i></a></li>
+                                            <li><a href="#!"><i class="fas fa-heart"></i></a></li>
+                                        </ul>
+                                        <ul class="default_share_links ul_li">
+                                            <li>
+                                                <a class="facebook" href="#!">
+                                                    <span><i class="fab fa-facebook-square"></i> Like</span>
+                                                    <small>10K</small>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="twitter" href="#!">
+                                                    <span><i class="fab fa-twitter-square"></i> Tweet</span>
+                                                    <small>15K</small>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="google" href="#!">
+                                                    <span><i class="fab fa-google-plus-square"></i> Google+</span>
+                                                    <small>20K</small>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="share" href="#!">
+                                                    <span><i class="fas fa-plus-square"></i> Share</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- product quick view modal - end
+    ================================================== -->
+    <!-- slider_section - start
+    ================================================== -->
+    @*<section class="slider_section slider_3">
+            <div class="main_slider mb-0" data-slick='{"arrows": false}'>
+                @foreach (var slide in Model.LstSlider)
+                {
+                    <div class="slider_item">
+                        <div class="container">
+                            <div class="row align-items-center justify-content-lg-between">
+                                <div class="col col-lg-4">
+                                    <div class="slider_image" data-animation="fadeInLeft" data-delay=".4s">
+                                        <img src="@slide.Images" alt="">
+                                    </div>
+                                </div>
+                                <div class="col col-lg-4">
+                                    <div class="slider_content text-center">
+                                        <h3 class="small_title" data-animation="fadeInUp2" data-delay=".2s">BÀN PHÍM CƠ</h3>
+                                        <h4 class="big_title" data-animation="fadeInUp2" data-delay=".4s">@slide.Name</h4>
+                                        <p data-animation="fadeInUp2" data-delay=".6s">Mẫu phím được ưa chuột nhất 2023 trong tầm giá</p>
+                                        <div class="item_price justify-content-center" data-animation="fadeInUp2" data-delay=".6s">
+                                            @if (slide.PriceSource != 0)
+                                            {
+                                                <del>@slide.PriceSource</del>
+                                            }
+
+                                            <span class="sale_price">@slide.PriceRetailStr</span>
+                                        </div>
+                                        <a class="btn btn_primary" href="@slide.URLFriendly" data-animation="fadeInUp2" data-delay=".8s">Mua ngay</a>
+                                    </div>
+                                </div>
+                                <div class="col col-lg-4">
+                                    <div class="slider_image" data-animation="fadeInRight" data-delay=".4s">
+                                        <img src="@slide.ImageHover" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </section>*@
+    <!-- slider_section - end
+    <!-- slider_section - start
+        ================================================== -->
+    <section class="slider_section slider_2">
+        <div class="container">
+            <div class="row justify-content-end">
+                <div class="col col-lg-9">
+                    <div class="main_slider" data-slick='{"arrows": false}'>
+                        @foreach (var slide in Model.LstSlider)
+                        {
+                            <div class="slider_item">
+                                <div class="slider_content">
+                                    <h3 class="small_title" data-animation="fadeInUp2" data-delay=".2s">Bàn làm việc</h3>
+                                    <h4 class="big_title" data-animation="fadeInUp2" data-delay=".4s">@slide.Name</h4>
+                                    <p data-animation="fadeInUp2" data-delay=".6s">@slide.Name</p>
+                                    <div class="item_price" data-animation="fadeInUp2" data-delay=".6s">
+                                        @if (slide.PriceSource != 0)
+                                        {
+                                            <del>@slide.PriceSource</del>
+                                        }
+                                        <span class="sale_price">@slide.PriceRetailStr</span>
+                                    </div>
+                                    <a class="btn btn_primary" href="@slide.URLFriendly" data-animation="fadeInUp2" data-delay=".8s">Mua ngay</a>
+                                </div>
+                                <div class="slider_image" data-animation="fadeInRight" data-delay=".4s">
+                                    <img src="@slide.Images" alt="@slide.URLFriendly">
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- slider_section - end
+    ================================================== -->
+    <!-- promotion_section - start
+    ================================================== -->
+    <section class="promotion_section section_space pt-5">
+        <div class="container">
+            <div class="row promotion_banner_wrap">
+                <div class="col col-lg-6">
+                    <div class="promotion_banner3 big_item">
+                        @*<div class="item_badge">
+                                <div class="text-center">
+                                    <span>Save</span>
+                                    <strong>30%</strong>
+                                </div>
+                            </div>*@
+                        <a href="@Model.LstFeaturer[0].URLFriendly" class="global_link"></a>
+                        <div class="item_content">
+                            <h3 class="item_subtitle">Bán chạy trong tháng</h3>
+                            <h4 class="item_title">@Model.LstFeaturer[0].CategoryName</h4>
+                        </div>
+                        <div class="item_image justify-content-end">
+                            <img src="@Model.LstFeaturer[0].Images" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-lg-6">
+                    <div class="promotion_banner">
+                        <div class="item_image">
+                            <img src="@Model.LstFeaturer[1].Images" alt="">
+                        </div>
+                        <div class="item_content">
+                            <h3 class="item_title">@Model.LstFeaturer[1].Name</h3>
+                            <p>
+                                It is a long established fact that a reader will be distracted
+                            </p>
+                            <a class="btn btn_primary" href="@Model.LstFeaturer[1].URLFriendly">Chi tiết</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col col-md-6 col-sm-6">
+                            <div class="promotion_banner3">
+                                <a href="@Model.LstFeaturer[2].URLFriendly" class="global_link"></a>
+                                <div class="item_content">
+                                    <h3 class="item_subtitle">Bán chạy trong tháng</h3>
+                                    <h4 class="item_title">@Model.LstFeaturer[2].Name</h4>
+                                </div>
+                                <div class="item_image justify-content-end">
+                                    <img src="@Model.LstFeaturer[2].Images" alt="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col col-md-6 col-sm-6">
+                            <div class="promotion_banner3">
+                                <a href="@Model.LstFeaturer[3].URLFriendly" class="global_link"></a>
+                                <div class="item_content">
+                                    <h3 class="item_subtitle">Bán chạy trong tháng</h3>
+                                    <h4 class="item_title">@Model.LstFeaturer[3].Name</h4>
+                                </div>
+                                <div class="item_image justify-content-end">
+                                    <img src="@Model.LstFeaturer[3].Images" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- promotion_section - end
+    ================================================== -->
+    <!-- product_section - start
+    ================================================== -->
+    <section class="product_section">
+        <div class="container">
+            <ul class="tabs_nav nav" role="tablist">
+                <li role="presentation">
+                    <button class="active" data-bs-toggle="tab" data-bs-target="#phimco_tab" type="button" role="tab" aria-selected="true">Bàn phím cơ</button>
+                </li>
+            </ul>
+            <div class="tab-content tad_has_carousel">
+                <div class="tab-pane fade show active" id="phimco_tab" role="tabpanel">
+                    <div class="product_carousel_wrap arrows_topright">
+                        <div class="best_seller_carousel" data-slick='{"dots": false}'>
+                            @foreach (var item in Model.LstPhimCo)
+                            {
+                                <div class="product_layout1">
+                                    <div class="item_image">
+                                        <img src="@item.Images" alt="">
+                                        <img src="@item.ImageHover" alt="">
+                                        <a class="quickview_btn" data-bs-toggle="modal" href="#quickview_popup" role="button">Xem nhanh</a>
+                                    </div>
+                                    <div class="item_content">
+                                        <h3 class="item_title">
+                                            <a href="@item.URLFriendly">@item.Name</a>
+                                        </h3>
+                                        @*<ul class="rating_star ul_li">
+                                                <li><i class="fa-solid fa-star"></i></li>
+                                                <li><i class="fa-solid fa-star"></i></li>
+                                                <li><i class="fa-solid fa-star"></i></li>
+                                                <li><i class="fa-solid fa-star"></i></li>
+                                                <li><i class="fa-solid fa-star"></i></li>
+                                            </ul>*@
+                                        <div class="item_price">
+                                            <span>@item.PriceRetailStr</span>
+                                            @if (item.PriceSource != 0)
+                                            {
+                                                <del>@item.PriceSource</del>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                        </div>
+                        <div class="carousel_nav">
+                            <button type="button" class="bsc_left_arrow"><i class="fa-regular fa-angle-left"></i></button>
+                            <button type="button" class="bsc_right_arrow"><i class="fa-regular fa-angle-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- product_section - end
+    ================================================== -->
+    <!-- new_arrivals_section - start
+    ================================================== -->
+    <section class="new_arrivals_section section_space">
+        <div class="container">
+            <div class="section_title mb-0">
+                <h2 class="title_text"><i class="fa-duotone fa-sparkles"></i> Lót chuột </h2>
+            </div>
+            <div class="row newarrivals_products">
+                <div class="col col-lg-5">
+                    <div class="deals_product_layout2 text-center">
+                        <a class="global_link" href="@Model.SpecialChuot.URLFriendly"></a>
+                        <div class="bg_area">
+                            <div class="item_image">
+                                <img src="@Model.SpecialChuot.Images" alt="">
+                            </div>
+                            <div class="offter_type text-start">
+                                <span>Best Seller</span>
+                                <span>trong tháng</span>
+                            </div>
+                            <div class="item_badge">
+                                <span>Số lượng <strong>@Model.SpecialChuot.CountSaled</strong></span>
+                            </div>
+                            <div class="item_price">
+                                <span>@Model.SpecialChuot.PriceRetailStr</span>
+                                @if (Model.SpecialChuot.PriceSource != 0)
+                                {
+                                    <del>@Model.SpecialChuot.PriceSource</del>
+                                }
+                            </div>
+                            <h3 class="item_title">@Model.SpecialChuot.Name</h3>
+                            <div class="available_content_wrap">
+                                <span>Đã bán : <strong>@Model.SpecialChuot.CountSaled</strong></span>
+                                <span>Khuyến mại còn lại : <strong>2</strong></span>
+                            </div>
+                            @*<div class="progress">
+                                    <div class="progress-bar" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <div class="countdown_wrap">
+                                    <span class="title_text">Hurry Up ! Offer ends in</span>
+                                    <ul class="countdown_timer ul_li_center" data-countdown="2025/3/24"></ul>
+                                </div>*@
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-lg-7">
+                    <div class="new_arrivals_carousel arrows_topright">
+                        <div class="common_carousel_2" data-slick='{"dots": false}'>
+                            @for (int i = 1; i < Model.LstChuot.Count - 1; i = i + 2)
+                            {
+                                <div class="slider_item">
+                                    <div class="product_layout1">
+                                        <div class="item_image">
+                                            <img src="@Model.LstChuot[i].Images" alt="">
+                                            <img src="@Model.LstChuot[i].ImageHover" alt="">
+                                            <a class="quickview_btn" data-bs-toggle="modal" href="#quickview_popup" role="button">Chi tiết</a>
+                                        </div>
+                                        <div class="item_content">
+                                            <h3 class="item_title">
+                                                <a href="@Model.LstChuot[i].URLFriendly">@Model.LstChuot[i].Name</a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <span>@Model.LstChuot[i].PriceRetailStr</span>
+                                                <del>@Model.LstChuot[i].PriceSource</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="product_layout1">
+                                        <div class="item_image">
+                                            <img src="@Model.LstChuot[i+1].Images" alt="">
+                                            <img src="@Model.LstChuot[i+1].ImageHover" alt="">
+                                            <a class="quickview_btn" data-bs-toggle="modal" href="#quickview_popup" role="button">Chi tiết</a>
+                                        </div>
+                                        <div class="item_content">
+                                            <h3 class="item_title">
+                                                <a href="@Model.LstChuot[i+1].URLFriendly">@Model.LstChuot[i].Name</a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <span>@Model.LstChuot[i + 1].PriceRetailStr</span>
+                                                <del>@Model.LstChuot[i + 1].PriceSource</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                        </div>
+                        <div class="carousel_nav">
+                            <button type="button" class="cc2_left_arrow"><i class="fa-regular fa-angle-left"></i></button>
+                            <button type="button" class="cc2_right_arrow"><i class="fa-regular fa-angle-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- new_arrivals_section - end
+    ================================================== -->
+    <!-- calltoaction_section - start
+    ================================================== -->
+    <section class="calltoaction_section section_space" style="background-image: url('assets/images/calltoaction/bg_1.webp');">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col col-lg-6 order-last">
+                    <div class="item_image">
+                        <img src="~/Images/web/calltoaction/controlar.webp" alt="PC-SHOP-Trang-Tri-May-Tinh-Hai-Phong">
+                    </div>
+                </div>
+                <div class="col col-lg-6">
+                    <div class="item_content">
+                        <h2>Gaming Accessories</h2>
+                        <h3>Sonny PlayStation DUALSHOCK 4 Wireless Multy Color Controller</h3>
+                        <div class="item_price">
+                            <span class="sale_price">$580.99</span>
+                            <del>$630.99</del>
+                        </div>
+                        <a class="btn btn_primary" href="product_details.html">Start Buying</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- calltoaction_section - end
+    ================================================== -->
+    <!-- category_section - start
+    ================================================== -->
+    <section class="category_section section_space">
+        <div class="container">
+            <div class="section_title mb-0">
+                <h2 class="title_text"><i class="fa-duotone fa-fire"></i> Danh mục sản phẩm</h2>
+            </div>
+            <div class="top_category_wrap arrows_topright">
+                <div class="top_category_carousel" data-slick='{"dots": false}'>
+                    @foreach (var item in Model.LstCate)
+                    {
+                        <div class="slider_item">
+                            <div class="category_boxed">
+                                <a href="/danh-muc/@item.CateURL">
+                                    <span class="item_image">
+                                        <img src="@item.ImgHomePage" alt="@item.CateURL">
+                                    </span>
+                                    <span class="item_title">@item.Name</span>
+                                </a>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="carousel_nav">
+                    <button type="button" class="tc_left_arrow"><i class="fa-regular fa-angle-left"></i></button>
+                    <button type="button" class="tc_right_arrow"><i class="fa-regular fa-angle-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- category_section - end
+    ================================================== -->
+    <!-- policy_section - start
+    ================================================== -->
+    <section class="policy_section">
+        <div class="policy_item">
+            <div class="item_icon">
+                <i class="icon icon-Truck"></i>
+            </div>
+            <div class="item_content">
+                <h3 class="item_title">Miễn phí ship</h3>
+                <p>
+                    Nội thành Hải Phòng
+                </p>
+            </div>
+        </div>
+        <div class="policy_item">
+            <div class="item_icon">
+                <i class="icon icon-Headset"></i>
+            </div>
+            <div class="item_content">
+                <h3 class="item_title">Tư vấn 24/7</h3>
+                <p>
+                    0986.000.685
+                </p>
+            </div>
+        </div>
+        <div class="policy_item">
+            <div class="item_icon">
+                <i class="icon icon-Wallet"></i>
+            </div>
+            <div class="item_content">
+                <h3 class="item_title">1 Đổi 1</h3>
+                <p>
+                    Trong thời gian cam kết
+                </p>
+            </div>
+        </div>
+
+        <div class="policy_item">
+            <div class="item_icon">
+                <i class="icon icon-Dollars"></i>
+            </div>
+            <div class="item_content">
+                <h3 class="item_title">Đa dạng phương thức thanh toán</h3>
+                <p>
+                    Momo, Ví điện tử, Quẹt thẻ...
+                </p>
+            </div>
+        </div>
+    </section>
+    <!-- policy_section - end
+    ================================================== -->
+    <!-- newsletter_section - start
+    ================================================== -->
+    <section class="newsletter_section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col col-lg-8">
+                    <h2 class="newsletter_title text-white">
+                        <i class="icofont-paper-plane"></i>
+                        Đăng ký nhận thông tin sản phẩm HOTTREND sớm nhất tại PC-SHOP
+                    </h2>
+                </div>
+                <div class="col col-lg-4">
+                    <form action="#!">
+                        <div class="newsletter_form">
+                            <input type="email" name="email" placeholder="Email của bạn">
+                            <button type="submit" class="btn btn_danger">Gửi</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- newsletter_section - end
+    ================================================== -->
+</main>
+<!-- main body - end
+================================================== -->

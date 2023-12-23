@@ -1,0 +1,386 @@
+﻿@model CMSWebsite.Models.UsersDataModel
+@{
+    ViewBag.Title = "Quản lý người dùng";
+    Layout = "~/Views/Shared/CMS_MasterPage.cshtml";
+}
+
+
+<div>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Quản lý người dùng</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li>
+                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                        <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                            <li role="presentation" class="active">
+                                <a href="#tab_lst_user" id="lstUserTab" role="tab" data-toggle="tab" aria-expanded="true"><i class="fa fa-user"></i> &nbsp; Danh sách người dùng</a>
+                            </li>
+                            <li role="presentation" class="">
+                                <a href="#tab_lst_role" role="tab" id="lstRoleTab" data-toggle="tab" aria-expanded="false"><i class="fa fa-cogs"></i> &nbsp;Phân quyền</a>
+                            </li>
+                        </ul>
+                        <div id="myTabContent" class="tab-content">
+                            <div role="tabpanel" class="tab-pane fade active in" id="tab_lst_user" aria-labelledby="lstUserTab" ng-controller="usersCtrl">
+                                <div class="title_right">
+                                    <div class="col-md-12 col-sm-12 col-xs-12 form-group pull-right text-right">
+                                        <a class="btn btn-primary" onclick="showModalNewUser()"><i class="fa fa-plus-square"></i> Thêm mới</a>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                                        <ul class="pagination pagination-split">
+                                            <li><a onclick="searchUser('0')">Tất cả</a></li>
+                                            <li><a onclick="searchUser('a')">A</a></li>
+                                            <li><a onclick="searchUser('b')">B</a></li>
+                                            <li><a onclick="searchUser('c')">C</a></li>
+                                            <li><a onclick="searchUser('d')">D</a></li>
+                                            <li><a onclick="searchUser('e')">E</a></li>
+                                            <li><a onclick="searchUser('f')">F</a></li>
+                                            <li><a onclick="searchUser('g')">G</a></li>
+                                            <li><a onclick="searchUser('h')">H</a></li>
+                                            <li><a onclick="searchUser('i')">I</a></li>
+                                            <li><a onclick="searchUser('j')">J</a></li>
+                                            <li><a onclick="searchUser('k')">K</a></li>
+                                            <li><a onclick="searchUser('l')">L</a></li>
+                                            <li><a onclick="searchUser('m')">M</a></li>
+                                            <li><a onclick="searchUser('n')">N</a></li>
+                                            <li><a onclick="searchUser('o')">O</a></li>
+                                            <li><a onclick="searchUser('p')">P</a></li>
+                                            <li><a onclick="searchUser('q')">Q</a></li>
+                                            <li><a onclick="searchUser('r')">R</a></li>
+                                            <li><a onclick="searchUser('s')">S</a></li>
+                                            <li><a onclick="searchUser('t')">T</a></li>
+                                            <li><a onclick="searchUser('u')">U</a></li>
+                                            <li><a onclick="searchUser('v')">V</a></li>
+                                            <li><a onclick="searchUser('w')">W</a></li>
+                                            <li><a onclick="searchUser('x')">X</a></li>
+                                            <li><a onclick="searchUser('y')">Y</a></li>
+                                            <li><a onclick="searchUser('z')">Z</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div id="tblUsers" class="row">
+                                    @Html.Partial("_ListUsers", Model.LstUser)
+                                </div>
+
+
+                                <div id="modalUserEdit" class="modal fade bs-example-modal-lg" data-backdrop="static" role="dialog" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">
+                                                    <span aria-hidden="true">×</span>
+                                                </button>
+                                                <h4 class="modal-title">Sửa thông tin người dùng</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="row">
+                                                    <form id="formUsersEdit" name="formUsersEdit" data-parsley-validate class="form-horizontal form-label-left">
+                                                        <div class="col-md-5 col-sm-5 col-xs-12">
+                                                            <div class="form-group">
+                                                                <label class="control-label col-md-5 col-sm-5 col-xs-12" for="full-name">
+                                                                    Tên người dùng <span class="required">*</span>
+                                                                </label>
+                                                                <div class="col-md-7 col-sm-7 col-xs-12">
+                                                                    <input type="text" id="fullNameEdit" name="fullNameEdit" required="required" class="form-control col-md-7 col-xs-12">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="control-label col-md-5 col-sm-5 col-xs-12" for="user-name">
+                                                                    Tên đăng nhập <span class="required">*</span>
+                                                                </label>
+                                                                <div class="col-md-7 col-sm-7 col-xs-12">
+                                                                    <input type="text" readonly="readonly" id="userNameEdit" name="userNameEdit" required="required" class="form-control col-md-7 col-xs-12">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="control-label col-md-5 col-sm-5 col-xs-12" for="user-name">
+                                                                    Nhóm quyền <span class="required">*</span>
+                                                                </label>
+                                                                <div class="col-md-7 col-sm-7 col-xs-12">
+                                                                    <select class="form-control" id="slRoleEdit" name="slRoleEdit">
+                                                                        <option value="0">---- Chọn ----</option>
+                                                                        @foreach (var item in Model.LstRole)
+                                            {
+                                                <option value="@item.RoleID">@item.RoleName</option>
+                }
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="pass" class="control-label col-md-5 col-sm-5 col-xs-12">Đổi mật khẩu</label>
+                                                                <div class="col-md-7 col-sm-7 col-xs-12">
+                                                                    <input id="passEdit" class="form-control col-md-7 col-xs-12" type="password" name="passEdit">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="re-pass" class="control-label col-md-5 col-sm-5 col-xs-12">Trạng thái <span class="required">*</span></label>
+                                                               
+                                                                <div class="col-md-7 col-sm-7 col-xs-12">
+                                                                    <select class="form-control" id="slBannedEdit" name="slBannedEdit">
+                                                                        <option value="0">Đang hoạt động</option>
+                                                                        <option value="1">Dừng hoạt động</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="col-md-7 col-sm-7 col-xs-12">
+                                                            <div class="form-group">
+                                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                                                                    Điện thoại
+                                                                </label>
+                                                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                                                    <input type="text" id="phoneEdit" name="phoneEdit" class="form-control col-md-7 col-xs-12">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                                                                    Địa chỉ
+                                                                </label>
+                                                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                                                    <input id="addEdit" name="addEdit" type="text" class="form-control col-md-7 col-xs-12">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Email</label>
+                                                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                                                    <input class="form-control col-md-7 col-xs-12" type="text" id="emailEdit" name="emailEdit">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Ngày sinh</label>
+                                                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                                                    <input type="text" class="form-control" name="txtBirthdayEdit" id="txtBirthdayEdit">
+                                                                    <span class="fa fa-calendar form-control-feedback right" aria-hidden="true"></span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Giới tính :</label>
+                                                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                                                    <label class="control-label"> Nam </label>
+                                                                    <input type="radio" class="flat" name="genderEdit" checked id="genderEditM" value="M" />
+                                                                    <label class="control-label"> Nữ </label>
+                                                                    <input type="radio" class="flat" name="genderEdit" id="genderEditF" value="F" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12 col-sm-12 col-xs-12 text-right">
+                                                            <div class="ln_solid"></div>
+                                                            <div class="form-group">
+                                                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                                                    <a onclick="saveEditUser()" class="btn btn-success"><i class="fa fa-save"></i> Cập nhật </a>
+                                                                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-remove"></i>  Hủy bỏ</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div> <!-- End modal-body -->
+                                        </div>
+                                    </div>
+                                </div> <!-- End modalUserEdit -->
+                                <div id="modalUserNew" class="modal fade bs-example-modal-lg" data-backdrop="static" role="dialog" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">
+                                                    <span aria-hidden="true">×</span>
+                                                </button>
+                                                <h4 class="modal-title">Thêm mới người dùng</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="row">
+                                                    <form id="formUsersNew" name="formUsersNew" data-parsley-validate class="form-horizontal form-label-left">
+                                                        <div class="col-md-5 col-sm-5 col-xs-12">
+                                                            <div class="form-group">
+                                                                <label class="control-label col-md-5 col-sm-5 col-xs-12" for="full-name">
+                                                                    Tên người dùng <span class="required">*</span>
+                                                                </label>
+                                                                <div class="col-md-7 col-sm-7 col-xs-12">
+                                                                    <input type="text" id="fullNameNew" name="fullNameNew" required="required" class="form-control col-md-7 col-xs-12">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="control-label col-md-5 col-sm-5 col-xs-12" for="user-name">
+                                                                    Tên đăng nhập <span class="required">*</span>
+                                                                </label>
+                                                                <div class="col-md-7 col-sm-7 col-xs-12">
+                                                                    <input type="text" id="userNameNew" name="userNameNew" required="required" class="form-control col-md-7 col-xs-12">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="control-label col-md-5 col-sm-5 col-xs-12" for="user-name">
+                                                                    Nhóm quyền <span class="required">*</span>
+                                                                </label>
+                                                                <div class="col-md-7 col-sm-7 col-xs-12">
+                                                                    <select class="form-control" id="slRoleNew" name="slRoleNew">
+                                                                        <option value="0">---- Chọn ----</option>
+                                                                        @foreach (var item in Model.LstRole)
+                                            {
+                                                <option value="@item.RoleID">@item.RoleName</option>
+                }
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="pass" class="control-label col-md-5 col-sm-5 col-xs-12">Mật khẩu <span class="required">*</span></label>
+                                                                <div class="col-md-7 col-sm-7 col-xs-12">
+                                                                    <input id="passNew" class="form-control col-md-7 col-xs-12" type="password" name="passNew">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="re-pass" class="control-label col-md-5 col-sm-5 col-xs-12">Gõ lại mật khẩu <span class="required">*</span></label>
+                                                                <div class="col-md-7 col-sm-7 col-xs-12">
+                                                                    <input id="rePassNew" class="form-control col-md-7 col-xs-12" type="password" name="rePassNew">
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="col-md-7 col-sm-7 col-xs-12">
+                                                            <div class="form-group">
+                                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                                                                    Điện thoại
+                                                                </label>
+                                                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                                                    <input type="text" id="phoneNew" name="phoneNew" class="form-control col-md-7 col-xs-12">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                                                                    Địa chỉ
+                                                                </label>
+                                                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                                                    <input id="addNew" name="addNew" type="text" class="form-control col-md-7 col-xs-12">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Email</label>
+                                                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                                                    <input class="form-control col-md-7 col-xs-12" type="text" id="emailNew" name="emailNew">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Ngày sinh</label>
+                                                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                                                    <input type="text" class="form-control" name="txtBirthdayNew" id="txtBirthdayNew">
+                                                                    <span class="fa fa-calendar form-control-feedback right" aria-hidden="true"></span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Giới tính :</label>
+                                                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                                                    <label class="control-label"> Nam </label>
+                                                                    <input type="radio" class="flat" name="genderNew" checked id="genderNewM" value="M" />
+                                                                    <label class="control-label"> Nữ </label>
+                                                                    <input type="radio" class="flat" name="genderNew" id="genderNewF" value="F" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12 col-sm-12 col-xs-12 text-right">
+                                                            <div class="ln_solid"></div>
+                                                            <div class="form-group">
+                                                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                                                    <a onclick="saveNewUser()" class="btn btn-success"><i class="fa fa-save"></i> Thêm mới </a>
+                                                                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-remove"></i>  Hủy bỏ</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div> <!-- End modal-body -->
+                                        </div>
+                                    </div>
+                                </div> <!-- End modalUserEdit -->
+                            </div> <!-- End tab list user -->
+                            <div role="tabpanel" class="tab-pane fade" id="tab_lst_role" aria-labelledby="lstRoleTab" ng-controller="rolesCtrl">
+                                <div class="title_right">
+                                    <div class="col-md-12 col-sm-12 col-xs-12 form-group pull-right text-right">
+                                        <a class="btn btn-primary" onclick="showModalRole()"><i class="fa fa-plus-square"></i> Thêm mới</a>
+                                    </div>
+                                </div>
+                                <div class="ln_solid col-md-12 col-sm-12 col-xs-12"></div>
+                                <div id="tblRoles" class="row">
+                                    @Html.Partial("_ListRoles", Model.LstRole)
+                                </div>
+                                <div id="modalRoleNew" class="modal fade bs-example-modal-lg" data-backdrop="static" tabindex="-1" role="dialog" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">
+                                                    <span aria-hidden="true">×</span>
+                                                </button>
+                                                <h4 class="modal-title">Phân quyền</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="row" id="div-init-role">
+
+                                                </div>
+                                            </div> <!-- End modal-body -->
+                                            <div class="modal-footer">
+                                                <label class="control-label col-md-2 col-sm-3 col-xs-5">
+                                                    Tên quyền <span class="required">*</span>
+                                                </label>
+                                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                                    <input type="text" id="txtTitleNewRole" class="form-control col-md-4 col-xs-5">
+                                                </div>
+                                                <button type="submit" onclick="addNewRole()" class="btn btn-success"><i class="fa fa-save"></i> Thêm mới</button>
+                                                <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-remove"></i>  Hủy bỏ</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> <!-- End modalRoleNew -->
+                                <div id="modalRoleEdit" class="modal fade bs-example-modal-lg" data-backdrop="static" role="dialog" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">
+                                                    <span aria-hidden="true">×</span>
+                                                </button>
+                                                <h4 class="modal-title">Sửa phân quyền</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="row" id="div-init-role-edit">
+                                                </div>
+                                            </div> <!-- End modal-body -->
+                                            <div class="modal-footer">
+                                                <label class="control-label col-md-2 col-sm-3 col-xs-5">
+                                                    Tên quyền <span class="required">*</span>
+                                                </label>
+                                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                                    <input type="text" id="txtTitleEditRole" class="form-control col-md-4 col-xs-5">
+                                                    <input type="hidden" id="txtRoleIdEdit" />
+                                                </div>
+                                                <button type="submit" onclick="saveEditRole()" class="btn btn-success"><i class="fa fa-save"></i> Cập nhật</button>
+                                                <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-remove"></i>  Hủy bỏ</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> <!-- End modalUserEdit -->
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- End x_content -->
+            </div> <!-- End x_panel -->
+        </div> <!-- End col-md-12  -->
+    </div>
+</div>
+<script type="text/javascript" src="~/Scripts/cms/cms.account.js"></script>
+
+
+
+
+
+

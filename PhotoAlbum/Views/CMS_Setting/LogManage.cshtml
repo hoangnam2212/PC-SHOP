@@ -1,0 +1,64 @@
+﻿@model CMSWebsite.Models.LogManageDataModel
+@{
+    ViewBag.Title = "Lịch sử thao tác trên hệ thống";
+    Layout = "~/Views/Shared/CMS_MasterPage.cshtml";
+}
+
+
+<div class="page-title">
+    <div class="title_left">
+        <h3>Lịch sử thao tác</h3>
+    </div>
+</div>
+<div class="clearfix"></div>
+
+
+<div class="row">
+    <div class="col-md-4 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h5> Lọc theo thời gian </h5>
+            </div>
+            <div class="x_content">
+                <div id="txtdatefilter" class="pull-left col-lg-12 col-md-12 col-sm-12" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc;margin-bottom:10px;">
+                    <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+                    <span></span> <b class="caret"></b>
+                </div>
+                <a class="btn btn-primary" style="margin-top:10px;float:right;" onclick="filterByDate()">Lấy danh sách</a>
+
+
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h5>Lọc theo người dùng</h5>
+            </div>
+            <div class="x_content">
+                <select class="form-control" id="slLookup">
+                    <option value="0">--- Chọn người dùng ---</option>
+                    @foreach (var item in Model.LstUser)
+                    {
+                        <option value="@item.UserID">@item.FullName</option>
+                    }
+                </select>
+                <a class="btn btn-primary" style="margin-top:10px;float:right;" onclick="filterByAcc()">Tìm kiếm</a>
+
+            </div>
+        </div>
+    </div>
+    
+</div>
+<div class="ln_solid"></div>
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12" id="tblLogs">
+        @Html.Partial("_ListLog", Model.LstLog)
+    </div> <!-- End col-md-12  -->
+</div>
+
+
+
+
+<script type="text/javascript" src="~/Scripts/cms/cms.log.js"></script>

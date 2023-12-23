@@ -1,0 +1,123 @@
+﻿@model CMSWebsite.Models.EditPostModel
+@{
+    ViewBag.Title = "Sửa bài viết";
+    Layout = "~/Views/Shared/CMS_MasterPage.cshtml";
+}
+
+
+<!-- Content Header (Page header) -->
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="form-group" id="box-title">
+                <input type="text" class="form-control" id="postTitle" placeholder="Nhập tiêu đề bài viết" value="@Model.PostEdit.PostTitle">
+            </div>
+            <div style="display:block">
+                <textarea id="editor1" name="editor1" rows="10" cols="80">@Model.PostEdit.PostContent</textarea>
+            </div>
+            <div class="box-header with-border">
+                <h5 class="box-title">Mô tả bài viết <small>170 chữ</small></h5>
+            </div><!-- /.box-header -->
+            <div class="box-body">
+                <div style="display:block">
+                    <textarea id="editor2" maxlength="170" class="form-control" style="width:100%;" name="editor2" rows="4" cols="80">@Model.PostEdit.PostDescription</textarea>
+                </div>
+            </div><!-- /.box-body -->
+
+            <div class="box-header with-border">
+                <h5 class="box-title">Thông tin SEO</h5>
+            </div><!-- /.box-header -->
+            <form role="form" class="form-horizontal">
+                <div class="box-body">
+                    <input type="hidden" value="@Model.PostEdit.PostId" id="editId" />
+
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">SEO Keywords</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="seoKeyword" placeholder="Từ khóa" value="@Model.PostEdit.PostSeoKeyword">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">SEO Description</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" rows="3" id="seoDesc" placeholder="Mô tả ...">@Model.PostEdit.PostSeoDesc</textarea>
+                        </div>
+                    </div>
+                </div><!-- /.box-body -->
+            </form>
+        </div>
+        <div class="col-md-3">
+            <div class="box-right">
+                <div class="box-header with-border">
+                    <h5 class="box-title">Chỉnh sửa</h5>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                    <a onclick="editPost()" class="btn btn-primary pull-right">Sửa bài viết</a>
+                    <div class="clearfix"></div>
+                </div>
+            </div><!-- /.box -->
+
+            <div class="box-right" id="box-cate">
+                <div class="box-header with-border">
+                    <h5 class="box-title">Danh mục bài viết</h5>
+                </div><!-- /.box-header -->
+
+                <div class="box-body" id="lstCate">
+                    <ul class="list-unstyled" id="lstCate">
+                        @foreach (var item in Model.LstCate)
+                        {
+                            var check = Model.LstPostCate.Where(o => o.CateID == item.CategoryId).FirstOrDefault();
+                            if (check != null)
+                            {
+                                <li>
+                                    <input type="checkbox" class="flat chk-check" value="@item.CategoryId" checked id="chk-@item.CategoryId" />
+                                    <label for="chk-@item.CategoryId"> &nbsp; @item.CategoryName &nbsp;&nbsp;</label>
+                                </li>
+                            }
+                            else
+                            {
+                                <li>
+                                    <input type="checkbox" class="flat chk-check" value="@item.CategoryId" id="chk-@item.CategoryId" />
+                                    <label for="chk-@item.CategoryId"> &nbsp; @item.CategoryName &nbsp;&nbsp;</label>
+                                </li>
+                            }
+                        }
+                    </ul>
+                    <input type="hidden" value="@Model.PostEdit.PostFaceImage" id="imgFace" />
+                </div>
+            </div><!-- /.box -->
+
+            <div class="box-right" id="box-cate">
+                <div class="box-header with-border">
+                    <h5 class="box-title">Tags <small>(Viết thường, có dấu)</small></h5>
+                </div>
+                <div class="box-body">
+                    <input id="tags_1" type="text" class="tags form-control" value="@Model.Tags" />
+                    <div id="suggestions-container" style="position: relative; float: left; width: 250px; margin: 10px;"></div>
+
+                </div>
+            </div>
+
+            <div class="box-right">
+                <div class="box-header with-border">
+                    <h5 class="box-title">Ảnh bìa <small> (600 x 400) hoặc tỉ lệ 1.5 : 1 </small></h5>
+                </div>
+                
+                <div class="box-body">
+                    <div id="Imagecontainer"><img id="imgEdit" class="thumb" src="@Model.PostEdit.PostFaceImage" /></div>
+                </div>
+                <div class="box-footer">
+                    <a onclick="uploadImage()" style="text-decoration:underline;cursor:pointer">Thiết lập hình ảnh bìa</a>
+                    <form id="FormUpload" method="post" enctype="multipart/form-data">
+                        <input type="file" name="Files" id="Files" style="display:none" />
+                    </form>
+                </div>
+            </div><!-- /.box -->
+        </div>
+
+    </div>
+</section><!-- /.content -->
+
+<script type="text/javascript" src="~/Scripts/cms/cms.edit-post.js"></script>
+

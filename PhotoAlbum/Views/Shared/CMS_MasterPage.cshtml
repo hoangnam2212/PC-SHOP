@@ -1,0 +1,183 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title </title>
+    <!-- Bootstrap -->
+    <link href="~/Content/common/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="~/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="~/Content/plugins/icheck/skins/flat/green.css" rel="stylesheet">
+    <!-- bootstrap-daterangepicker -->
+    <link href="~/Content/plugins/daterangepicker/daterangepicker.css" rel="stylesheet">
+    <!-- Custom Theme Style -->
+    <link href="~/Content/cms/custom/custom.css" rel="stylesheet">
+    <!-- PNotify -->
+    <link href="~/Content/plugins/pnotify/pnotify.css" rel="stylesheet">
+    <!-- Progress -->
+    <link href="~/Content/plugins/nprogress/nprogress.css" rel="stylesheet">
+    <!-- Tags -->
+    <link href="~/Content/plugins/tags/switchery.min.css" rel="stylesheet">
+    <!-- Select2 -->
+    <link rel="stylesheet" type="text/css" href="~/Content/plugins/select2/select2.css" />
+    <!-- Autocomplete -->
+    <link href="~/Content/plugins/autocomplete/easy-autocomplete.min.css" rel="stylesheet">
+    <!-- Datatables -->
+    <link href="~/Content/plugins/datatable/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/plugins/datatable/responsive.bootstrap.min.css" rel="stylesheet">
+    <!-- Custom Theme Style -->
+    <link href="~/Content/common/common.css" rel="stylesheet">
+    <link href="~/Content/cms/custom/user.custom.css" rel="stylesheet">
+    <!-- jQuery -->
+    <script src="~/Scripts/jquery.min.js"></script>
+</head>
+<body class="nav-md" oncontextmenu="return false;">
+    <div class="container body">
+        <div class="main_container">
+            <div class="col-md-3 left_col">
+                <div class="clearfix"></div>
+                <!-- menu profile quick info -->
+                <div class="left_col scroll-view">
+                    <div class="navbar nav_title" style="border: 0;">
+                        <a href="/CMS_Home/Dashboard" class="site_title"><i class="fa fa-car"></i> <span> &nbsp; CMS LOGO</span></a>
+                    </div>
+                    <div class="profile clearfix">
+                        <div class="profile_pic">
+                            <a href="/CMS_Account/ProfileManager"><img src="@ViewBag.ImgFace" alt="Avata" class="img-circle profile_img"></a>
+                        </div>
+                        <div class="profile_info">
+                            <h2><a href="/CMS_Account/ProfileManager" style="color:#fff">@ViewBag.FullName</a></h2>
+                        </div>
+                    </div>
+                    <!-- /menu profile quick info -->
+                    <br />
+                    <!-- sidebar menu -->
+                    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                        @Html.Partial("_CMS_MenuSidebar")
+                    </div>
+                    <!-- /sidebar menu -->
+                    <!-- /menu footer buttons -->
+                    <div class="sidebar-footer hidden-small">
+                        <a data-toggle="tooltip" data-placement="top" title="Settings">
+                            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                            <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="Lock">
+                            <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="Logout" href="/Login/Logout">
+                            <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                        </a>
+                    </div>
+                    <!-- /menu footer buttons -->
+                </div>
+            </div>
+            <!-- top navigation -->
+            <div class="top_nav">
+                <div class="nav_menu">
+                    <nav>
+                        <div class="nav toggle">
+                            <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                        </div>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="">
+                                <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    <img src="@ViewBag.ImgFace" alt="">@ViewBag.FullName
+                                    <span class=" fa fa-angle-down"></span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                    <li><a href="/CMS_Account/ProfileManager"> Thông tin cá nhân</a></li>
+                                    @*<li>
+                                            <a href="javascript:;">
+                                                <span class="badge bg-red pull-right">50%</span>
+                                                <span>Settings</span>
+                                            </a>
+                                        </li>*@
+                                    <li><a href="javascript:;">Trợ giúp</a></li>
+                                    <li><a href="/CMS_Login/Logout"><i class="fa fa-sign-out pull-right"></i> Đăng xuất</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <!-- /top navigation -->
+            <!-- page content -->
+            <div class="right_col" role="main" style="padding-bottom:200px;">
+                @RenderBody()
+            </div>
+
+            <div id="loading-all" class="demo-3 demo-dark">
+                <section class="main" style="text-align:center;font-weight:700;">
+                    <!-- the component -->
+                    <ul class="bokeh">
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                    <p>Đang xử lý ...</p>
+                </section>
+            </div>
+
+            <!-- /page content -->
+            <!-- footer content -->
+            <footer>
+                <div class="pull-right">
+                    Hệ thống quản trị website tạo bởi <a href="#">Hoàng Nam 2018</a>
+                </div>
+                <div class="clearfix"></div>
+            </footer>
+            <!-- /footer content -->
+        </div>
+    </div>
+
+
+    <!-- Bootstrap -->
+    <script src="~/Scripts/common/bootstrap/bootstrap.min.js"></script>
+    <!-- Datatables -->
+    <script src="~/Scripts/plugins/datatable/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/plugins/datatable/dataTables.bootstrap.min.js"></script>
+    <script src="~/Scripts/plugins/datatable/dataTables.responsive.min.js"></script>
+    <script src="~/Scripts/plugins/datatable/responsive.bootstrap.js"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="~/Scripts/plugins/daterangerpicker/moment.min.js"></script>
+    <script src="~/Scripts/plugins/daterangerpicker/daterangepicker.js"></script>
+    <!-- iCheck -->
+    <script src="~/Scripts/plugins/icheck/icheck.min.js"></script>
+    <!-- jquery.inputmask -->
+    <script src="~/Scripts/plugins/inputmask/jquery.inputmask.bundle.min.js"></script>
+    <!-- PNotify -->
+    <script src="~/Scripts/plugins/pnotify/pnotify.js"></script>
+    <!-- Currency Scripts -->
+    <script src="~/Scripts/jquery.formatCurrency-1.4.0.min.js"></script>
+    <!-- Autocomplete Scripts -->
+    <script src="~/Scripts/plugins/autocomplete/jquery.easy-autocomplete.min.js"></script>
+    <!-- Select2 -->
+    <script src="~/Scripts/plugins/select2/select2.full.min.js"></script>
+    <!-- Nprogress -->
+    <script src="~/Scripts/plugins/nprogress/nprogress.js"></script>
+    <script src="~/Scripts/plugins/nprogress/bootstrap-progressbar.min.js"></script>
+    <!-- Chart.js -->
+    <script src="~/Scripts/plugins/chart/Chart.min.js"></script>
+    <!-- Sort -->
+    <script type="text/javascript" src="~/Scripts/jquery-sortable.js"></script>
+    <!-- TAGS -->
+    <script type="text/javascript" src="~/Scripts/plugins/tags/jquery.tagsinput.js"></script>
+    <script type="text/javascript" src="~/Scripts/plugins/tags/switchery.min.js"></script>
+    <!-- Ckeditor Scripts -->
+    <script src="~/Scripts/plugins/ckeditor/ckeditor.js"></script>
+    <script src="~/Scripts/plugins/ckfinder/ckfinder.js"></script>
+    <!-- Custom Theme Scripts -->
+    <script src="~/Scripts/custom.js"></script>
+    <!-- Custom Theme Scripts -->
+    <script src="~/Scripts/common/custom.utilities.js"></script>
+</body>
+</html>

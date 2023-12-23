@@ -1,0 +1,125 @@
+﻿
+@model CMSWebsite.Models.MenuInitRoleModel
+@{
+    int count = Model.LstParent.Count % 3 == 0 ? Model.LstParent.Count / 3 : (Model.LstParent.Count / 3) + 1;
+}
+
+
+
+@for (int i = 0; i < count; i++)
+{
+    <div class="row" style="padding:0px 15px;">
+        @for (int j = 0; j < 3; j++)
+        {
+            if ((3 * i + j) < Model.LstParent.Count)
+            {
+                <div class="col-md-4 col-sm-4 col-xs-4">
+                    <h4 class="title">@Model.LstParent[3 * i + j].MenuName</h4>
+                    <div class="ln_solid"></div>
+                    <ul class="list-unstyled lst-role">
+                        @{
+                            var lstChild = Model.LstChild.Where(o => o.ParentID == @Model.LstParent[3 * i + j].MenuID).ToList();
+                            foreach (var itemChild in lstChild)
+                            {
+                                ///var lstFunc = Model.LstFunc.Where(o => o.MenuID == itemChild.MenuID).ToList();
+                                <li>
+                                    <input type="checkbox" value="@itemChild.MenuID" class="flat chkItemChild"> &nbsp;&nbsp;
+                                    <a data-toggle="collapse" href="#collapse-@itemChild.MenuID">
+                                        @itemChild.MenuName &nbsp;
+                                           <i class="fa fa-chevron-down"></i>
+                                        
+                                    </a>
+
+                                    <div id="collapse-@itemChild.MenuID" class="panel-collapse collapse" style="float:right;width:100%;">
+                                        <ul class="to_do" style="width:80%; margin-left:20px;">
+                                            
+                                            <li>
+                                                <p>
+                                                    <input type="checkbox" id="view-@itemChild.MenuID" value="@itemChild.MenuID" alt="1" class="flat chkRole chk-menu-@itemChild.MenuID"> &nbsp; Xem
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <p>
+                                                    <input type="checkbox" id="add-@itemChild.MenuID" value="@itemChild.MenuID" alt="2" class="flat chkRole chk-menu-@itemChild.MenuID"> &nbsp;Thêm
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <p>
+                                                    <input type="checkbox" id="edit-@itemChild.MenuID" value="@itemChild.MenuID" alt="3" class="flat chkRole chk-menu-@itemChild.MenuID"> &nbsp;Sửa
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <p>
+                                                    <input type="checkbox" id="del-@itemChild.MenuID" value="@itemChild.MenuID" alt="4" class="flat chkRole chk-menu-@itemChild.MenuID"> &nbsp;Xóa
+                                                </p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            }
+                            if (lstChild.Count == 0)
+                            {
+                                <li>
+                                    <input type="checkbox" value="@Model.LstParent[3 * i + j].MenuID" class="flat chkItemChild"> &nbsp;&nbsp;
+                                    <a data-toggle="collapse" href="#collapse-@Model.LstParent[3 * i + j].MenuID">
+                                        @Model.LstParent[3 * i + j].MenuName &nbsp;
+                                        <i class="fa fa-chevron-down"></i>
+
+                                    </a>
+
+                                    <div id="collapse-@Model.LstParent[3 * i + j].MenuID" class="panel-collapse collapse" style="float:right;width:100%;">
+                                        <ul class="to_do" style="width:80%; margin-left:20px;">
+
+                                            <li>
+                                                <p>
+                                                    <input type="checkbox" id="view-@Model.LstParent[3 * i + j].MenuID" alt="1" value="@Model.LstParent[3 * i + j].MenuID" class="flat chkRole chk-menu-@Model.LstParent[3 * i + j].MenuID"> &nbsp; Xem
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <p>
+                                                    <input type="checkbox" id="add-@Model.LstParent[3 * i + j].MenuID" alt="2" value="@Model.LstParent[3 * i + j].MenuID" class="flat chkRole chk-menu-@Model.LstParent[3 * i + j].MenuID"> &nbsp;Thêm
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <p>
+                                                    <input type="checkbox" id="edit-@Model.LstParent[3 * i + j].MenuID" alt="3" value="@Model.LstParent[3 * i + j].MenuID" class="flat chkRole chk-menu-@Model.LstParent[3 * i + j].MenuID"> &nbsp;Sửa
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <p>
+                                                    <input type="checkbox" id="del-@Model.LstParent[3 * i + j].MenuID" alt="4" value="@Model.LstParent[3 * i + j].MenuID" class="flat chkRole chk-menu-@Model.LstParent[3 * i + j].MenuID"> &nbsp;Xóa
+                                                </p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            }
+                        }
+                    </ul>
+                </div>
+                                }
+
+                            }
+    </div>
+                            }
+
+<script>
+    $(document).ready(function () {
+        $('input.flat').iCheck({
+            checkboxClass: 'icheckbox_flat-green',
+            radioClass: 'iradio_flat-green'
+        });
+    });
+    $('input.chkItemChild').on('ifToggled', function (event) {
+        var chk = this.checked;
+        var id = this.value;
+        $('input.chk-menu-' + id).each(function () {
+            if (chk == true) { $(this).iCheck('check'); }
+            else {
+                $(this).iCheck('uncheck');
+            }
+        });
+    });
+</script>
+
+

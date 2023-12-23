@@ -1,0 +1,42 @@
+﻿@using CMSWebsite.Models
+@{
+    PhotoAlbumEntities dbCMS = new PhotoAlbumEntities();
+
+    List<store_GetMenuByUserID_Result> listParent = new List<store_GetMenuByUserID_Result>();
+    List<store_GetMenuByUserID_Result> listMenu = new List<store_GetMenuByUserID_Result>();
+
+    if (Session["CMS_UserID"] == null) { Response.Redirect("~/CMS_Login/Index"); }
+
+    int id = Convert.ToInt32(Session["CMS_UserID"].ToString());
+
+    listMenu = dbCMS.store_GetMenuByUserID(id).ToList();
+    listParent = listMenu.Where(o => o.ParentID == 0 && o.Active == true && o.IsShow == true).OrderBy(o => o.OrderMenu).ToList();
+
+}
+<div class="menu_section">
+    <h3>DASHBOARD</h3>
+    <ul class="nav side-menu">
+
+        @foreach (var item in listParent)
+        {
+            var lstChild = listMenu.Where(o => o.ParentID == item.MenuID && o.Active == true && o.IsShow == true).OrderBy(o => o.OrderMenu).ToList();
+            <li>
+                @if (lstChild.Count != 0)
+                {
+                    <a><i class="fa @item.Icon"></i> @item.MenuName <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        @foreach (var itemChild in lstChild)
+                        {
+                            <li><a href="@itemChild.URL">@itemChild.MenuName</a></li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <a href="@item.URL"><i class="fa @item.Icon"></i> @item.MenuName</a>
+                }
+            </li>
+        }
+    </ul>
+</div>
+

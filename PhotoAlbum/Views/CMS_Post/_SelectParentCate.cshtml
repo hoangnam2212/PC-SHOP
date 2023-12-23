@@ -1,0 +1,12 @@
+﻿@model List<CMSWebsite.Models.Web_Category>
+
+<label>Danh mục cha</label>
+<select id="cateParent" class="form-control select2" style="width: 100%;">
+    <option value="0" selected="selected">Không có</option>
+    @foreach (var item in Model)
+    {
+
+            <option value="@item.CategoryId">@item.CategoryName</option>
+        }
+</select>
+

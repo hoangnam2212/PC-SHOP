@@ -1,0 +1,64 @@
+﻿@model List<CMSWebsite.Models.CMS_MediaDataModel>
+@{
+    ViewBag.Title = "Thư viện ảnh";
+    Layout = "~/Views/Shared/CMS_MasterPage.cshtml";
+}
+
+<div class="">
+    <div class="page-title">
+        <div class="title_left">
+            <h3> Thư viện ảnh </h3>
+
+        </div>
+        <div class="title_right">
+            <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search" style="text-align:right;">
+                <a class="btn btn-primary btn-sm" onclick="uploadImgMul()"> Thêm ảnh</a>
+            </div>
+
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Tất cả ảnh <small> (@Model.Count ảnh) </small></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li>
+                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <div class="row" id="lstGallery">
+                        @foreach (var item in Model)
+                        {
+                            <div class="col-md-2" id="box-media-@item.ID">
+                                <div class="thumbnail">
+                                    <div class="image view view-first">
+                                        <img style="width: 100%; display: block;" src="@item.FileName" alt="image" />
+                                    </div>
+                                    <div class="btn-del-img">
+                                        <a class="btn btn-danger btn-xs" onclick="delImg('@item.FileName',@item.ID)">X</a>
+                                    </div>
+                                    <div class="caption">
+                                        <p>@item.FileSize</p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                    <form id="formUpload" name="formUpload" data-parsley-validate class="form-horizontal form-label-left">
+                        <input type="file" multiple name="MultiFiles" id="MultiFiles" style="display:none" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   
+</div>
+
+<script type="text/javascript" src="~/Scripts/cms/cms.media.js"></script>

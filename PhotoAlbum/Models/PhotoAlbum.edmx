@@ -1,0 +1,1366 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="PhotoAlbumModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CMS_CateProduct">
+          <Key>
+            <PropertyRef Name="CategoyID" />
+          </Key>
+          <Property Name="CategoyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ParentID" Type="int" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="CateURL" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ImgHomePage" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CMS_Log">
+          <Key>
+            <PropertyRef Name="LogID" />
+          </Key>
+          <Property Name="LogID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="ContentLog" Type="nvarchar" MaxLength="400" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="Fullname" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CMS_Menu">
+          <Key>
+            <PropertyRef Name="MenuID" />
+          </Key>
+          <Property Name="MenuID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MenuName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ParentID" Type="int" Nullable="false" />
+          <Property Name="URL" Type="nvarchar" MaxLength="150" />
+          <Property Name="Icon" Type="nvarchar" MaxLength="50" />
+          <Property Name="OrderMenu" Type="int" Nullable="false" />
+          <Property Name="IsShow" Type="bit" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CMS_MenuRole">
+          <Key>
+            <PropertyRef Name="RoleMenuID" />
+          </Key>
+          <Property Name="RoleMenuID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleID" Type="int" Nullable="false" />
+          <Property Name="MenuID" Type="int" Nullable="false" />
+          <Property Name="ViewData" Type="bit" Nullable="false" />
+          <Property Name="AddData" Type="bit" Nullable="false" />
+          <Property Name="EditData" Type="bit" Nullable="false" />
+          <Property Name="DelData" Type="bit" Nullable="false" />
+          <Property Name="Import" Type="bit" Nullable="false" />
+          <Property Name="Export" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CMS_Product">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="CateID" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="PriceRetail" Type="float" Nullable="false" />
+          <Property Name="PriceRetailStr" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Images" Type="nvarchar" MaxLength="250" />
+          <Property Name="ProDescription" Type="ntext" Nullable="false" />
+          <Property Name="Note" Type="ntext" />
+          <Property Name="IsOnSale" Type="bit" Nullable="false" />
+          <Property Name="CreateBy" Type="int" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdateBy" Type="int" />
+          <Property Name="UpdateDate" Type="datetime" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="URLFriendly" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="IsTarget" Type="bit" Nullable="false" />
+          <Property Name="ImageHover" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Gallery" Type="ntext" Nullable="false" />
+          <Property Name="CountSaled" Type="int" Nullable="false" />
+          <Property Name="Rate" Type="float" Nullable="false" />
+          <Property Name="PriceSource" Type="int" Nullable="false" />
+          <Property Name="IsSlider" Type="bit" Nullable="false" />
+          <Property Name="IsFeature" Type="bit" Nullable="false" />
+          <Property Name="ProSumary" Type="ntext" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CMS_Role">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CreateBy" Type="int" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdateBy" Type="int" />
+          <Property Name="UpdateDate" Type="datetime" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CMS_UserRole">
+          <Key>
+            <PropertyRef Name="UserRoleID" />
+          </Key>
+          <Property Name="UserRoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="RoleID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CMS_Users">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Pass" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="250" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="Gender" Type="bit" />
+          <Property Name="Birthday" Type="datetime" />
+          <Property Name="CreateBy" Type="int" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="UpdateBy" Type="int" />
+          <Property Name="UpdateDate" Type="datetime" />
+          <Property Name="LastLogin" Type="datetime" />
+          <Property Name="ImgFace" Type="nvarchar" MaxLength="200" />
+          <Property Name="Status" Type="int" />
+          <Property Name="Banned" Type="bit" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Web_Banner">
+          <Key>
+            <PropertyRef Name="BannerID" />
+          </Key>
+          <Property Name="BannerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Images" Type="nvarchar" MaxLength="500" />
+          <Property Name="Link" Type="nvarchar" MaxLength="200" />
+          <Property Name="Title" Type="nvarchar" MaxLength="250" />
+          <Property Name="Position" Type="int" />
+        </EntityType>
+        <EntityType Name="Web_Category">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ParentId" Type="int" Nullable="false" />
+          <Property Name="CategoryName" Type="nvarchar" MaxLength="100" />
+          <Property Name="CateType" Type="int" />
+          <Property Name="CateURL" Type="nvarchar" MaxLength="100" />
+          <Property Name="CateIcon" Type="nvarchar" MaxLength="100" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Web_CategoryPortfolio">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ParentId" Type="int" Nullable="false" />
+          <Property Name="CategoryName" Type="nvarchar" MaxLength="100" />
+          <Property Name="CateImg" Type="ntext" />
+          <Property Name="CateURL" Type="nvarchar" MaxLength="100" />
+          <Property Name="CateIcon" Type="nvarchar" MaxLength="100" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Web_Config">
+          <Key>
+            <PropertyRef Name="ConfigID" />
+          </Key>
+          <Property Name="ConfigID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Hotline" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="300" />
+          <Property Name="Email" Type="nvarchar" MaxLength="150" />
+          <Property Name="Facebook" Type="nvarchar" MaxLength="300" />
+          <Property Name="GooglePlus" Type="nvarchar" MaxLength="300" />
+          <Property Name="Youtube" Type="nvarchar" MaxLength="300" />
+          <Property Name="CodeAnalytics" Type="ntext" />
+        </EntityType>
+        <EntityType Name="Web_Menu">
+          <Key>
+            <PropertyRef Name="MenuId" />
+          </Key>
+          <Property Name="MenuId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MenuName" Type="nvarchar" MaxLength="100" />
+          <Property Name="URL" Type="nvarchar" MaxLength="200" />
+          <Property Name="Active" Type="bit" />
+          <Property Name="Icon" Type="nvarchar" MaxLength="200" />
+          <Property Name="MenuTypeId" Type="int" />
+          <Property Name="ParentId" Type="int" />
+          <Property Name="MenuOrder" Type="int" />
+          <Property Name="MenuTarget" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Web_MenuType">
+          <Key>
+            <PropertyRef Name="MenuTypeId" />
+          </Key>
+          <Property Name="MenuTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeName" Type="nvarchar" MaxLength="200" />
+          <Property Name="Active" Type="bit" />
+        </EntityType>
+        <EntityType Name="Web_Portfolio">
+          <Key>
+            <PropertyRef Name="PortfolioId" />
+          </Key>
+          <Property Name="PortfolioId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Content" Type="ntext" />
+          <Property Name="Author" Type="int" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="ImageFace" Type="nvarchar" MaxLength="200" />
+          <Property Name="ImgGallery" Type="ntext" />
+          <Property Name="SeoDesc" Type="nvarchar" MaxLength="400" />
+          <Property Name="SeoKeyword" Type="nvarchar" MaxLength="200" />
+          <Property Name="URLFriendly" Type="nvarchar" MaxLength="200" />
+          <Property Name="Description" Type="ntext" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="UpdateDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Web_PortfolioCategory">
+          <Key>
+            <PropertyRef Name="PortfolioCateID" />
+          </Key>
+          <Property Name="PortfolioCateID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PortfolioID" Type="int" Nullable="false" />
+          <Property Name="CateID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Web_Post">
+          <Key>
+            <PropertyRef Name="PostId" />
+          </Key>
+          <Property Name="PostId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PostTitle" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="PostContent" Type="ntext" />
+          <Property Name="PostType" Type="nvarchar" MaxLength="100" />
+          <Property Name="PostAuthor" Type="int" />
+          <Property Name="PostCreateDate" Type="datetime" />
+          <Property Name="PostFaceImage" Type="nvarchar" MaxLength="200" />
+          <Property Name="PostSeoDesc" Type="nvarchar" MaxLength="400" />
+          <Property Name="PostSeoKeyword" Type="nvarchar" MaxLength="250" />
+          <Property Name="URLFriendly" Type="nvarchar" MaxLength="200" />
+          <Property Name="PostDescription" Type="ntext" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="PostUpdateDate" Type="datetime" />
+          <Property Name="CountView" Type="int" Nullable="false" />
+          <Property Name="IsHome" Type="bit" Nullable="false" />
+          <Property Name="Tags" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Web_PostCategory">
+          <Key>
+            <PropertyRef Name="CategoryPostID" />
+          </Key>
+          <Property Name="CategoryPostID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PostID" Type="int" Nullable="false" />
+          <Property Name="CateID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Web_Tags">
+          <Key>
+            <PropertyRef Name="TagID" />
+          </Key>
+          <Property Name="TagID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TagName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CountTag" Type="int" Nullable="false" />
+          <Property Name="URL" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <Function Name="store_GetMenuByUserID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="store_GetPostByCateID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cateID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="store_GetPostIndex" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="store_GetPostPopular" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="store_GetPostSection2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="store_GetPostSlider" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="store_GetProductByCateID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cateID" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="store_GetProductFeatureHomePage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="store_GetProductSizeFrame" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="proid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="store_GetProductSlider" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="store_GetProductTopSaleHomePage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="store_GetTags" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="PhotoAlbumModelStoreContainer">
+          <EntitySet Name="CMS_CateProduct" EntityType="Self.CMS_CateProduct" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CMS_Log" EntityType="Self.CMS_Log" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CMS_Menu" EntityType="Self.CMS_Menu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CMS_MenuRole" EntityType="Self.CMS_MenuRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CMS_Product" EntityType="Self.CMS_Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CMS_Role" EntityType="Self.CMS_Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CMS_UserRole" EntityType="Self.CMS_UserRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CMS_Users" EntityType="Self.CMS_Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Web_Banner" EntityType="Self.Web_Banner" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Web_Category" EntityType="Self.Web_Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Web_CategoryPortfolio" EntityType="Self.Web_CategoryPortfolio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Web_Config" EntityType="Self.Web_Config" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Web_Menu" EntityType="Self.Web_Menu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Web_MenuType" EntityType="Self.Web_MenuType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Web_Portfolio" EntityType="Self.Web_Portfolio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Web_PortfolioCategory" EntityType="Self.Web_PortfolioCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Web_Post" EntityType="Self.Web_Post" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Web_PostCategory" EntityType="Self.Web_PostCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Web_Tags" EntityType="Self.Web_Tags" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PhotoAlbumModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="PhotoAlbumEntities" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="store_GetMenuByUserID" ReturnType="Collection(PhotoAlbumModel.store_GetMenuByUserID_Result)">
+          <Parameter Name="UserID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="store_GetPostByCateID" ReturnType="Collection(PhotoAlbumModel.store_GetPostByCateID_Result)">
+          <Parameter Name="cateID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="store_GetPostPopular" ReturnType="Collection(PhotoAlbumModel.store_GetPostPopular_Result)" />
+          <FunctionImport Name="store_GetPostSection2" ReturnType="Collection(PhotoAlbumModel.store_GetPostSection2_Result)" />
+          <FunctionImport Name="store_GetPostSlider" ReturnType="Collection(PhotoAlbumModel.store_GetPostSlider_Result)" />
+          <FunctionImport Name="store_GetTags" ReturnType="Collection(PhotoAlbumModel.store_GetTags_Result)" />
+          <FunctionImport Name="store_GetPostIndex" ReturnType="Collection(PhotoAlbumModel.store_GetPostIndex_Result)" />
+          <FunctionImport Name="store_GetProductSizeFrame" ReturnType="Collection(PhotoAlbumModel.store_GetProductSizeFrame_Result)">
+          <Parameter Name="proid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="store_GetProductTopSaleHomePage" ReturnType="Collection(PhotoAlbumModel.store_GetProductTopSaleHomePage_Result)" />
+          <EntitySet Name="CMS_CateProduct" EntityType="PhotoAlbumModel.CMS_CateProduct" />
+          <EntitySet Name="CMS_Log" EntityType="PhotoAlbumModel.CMS_Log" />
+          <EntitySet Name="CMS_Menu" EntityType="PhotoAlbumModel.CMS_Menu" />
+          <EntitySet Name="CMS_MenuRole" EntityType="PhotoAlbumModel.CMS_MenuRole" />
+          <EntitySet Name="CMS_Role" EntityType="PhotoAlbumModel.CMS_Role" />
+          <EntitySet Name="CMS_UserRole" EntityType="PhotoAlbumModel.CMS_UserRole" />
+          <EntitySet Name="CMS_Users" EntityType="PhotoAlbumModel.CMS_Users" />
+          <EntitySet Name="Web_Banner" EntityType="PhotoAlbumModel.Web_Banner" />
+          <EntitySet Name="Web_Category" EntityType="PhotoAlbumModel.Web_Category" />
+          <EntitySet Name="Web_CategoryPortfolio" EntityType="PhotoAlbumModel.Web_CategoryPortfolio" />
+          <EntitySet Name="Web_Config" EntityType="PhotoAlbumModel.Web_Config" />
+          <EntitySet Name="Web_Menu" EntityType="PhotoAlbumModel.Web_Menu" />
+          <EntitySet Name="Web_MenuType" EntityType="PhotoAlbumModel.Web_MenuType" />
+          <EntitySet Name="Web_Portfolio" EntityType="PhotoAlbumModel.Web_Portfolio" />
+          <EntitySet Name="Web_PortfolioCategory" EntityType="PhotoAlbumModel.Web_PortfolioCategory" />
+          <EntitySet Name="Web_Post" EntityType="PhotoAlbumModel.Web_Post" />
+          <EntitySet Name="Web_PostCategory" EntityType="PhotoAlbumModel.Web_PostCategory" />
+          <EntitySet Name="Web_Tags" EntityType="PhotoAlbumModel.Web_Tags" />
+          <FunctionImport Name="store_GetProductSlider" ReturnType="Collection(PhotoAlbumModel.store_GetProductSlider_Result)" />
+          <FunctionImport Name="store_GetProductFeatureHomePage" ReturnType="Collection(PhotoAlbumModel.store_GetProductFeatureHomePage_Result)" />
+          <FunctionImport Name="store_GetProductByCateID" ReturnType="Collection(PhotoAlbumModel.store_GetProductByCateID_Result)">
+          <Parameter Name="cateID" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="CMS_Product" EntityType="PhotoAlbumModel.CMS_Product" />
+        </EntityContainer>
+        <ComplexType Name="store_GetMenuByUserID_Result">
+          <Property Type="Int32" Name="MenuID" Nullable="true" />
+          <Property Type="String" Name="MenuName" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ParentID" Nullable="true" />
+          <Property Type="String" Name="URL" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Icon" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="OrderMenu" Nullable="true" />
+          <Property Type="Boolean" Name="IsShow" Nullable="true" />
+          <Property Type="Boolean" Name="Active" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="store_GetPostByCateID_Result">
+          <Property Type="Int32" Name="PostId" Nullable="false" />
+          <Property Type="String" Name="PostTitle" Nullable="false" MaxLength="300" />
+          <Property Type="String" Name="PostContent" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="PostType" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="PostAuthor" Nullable="true" />
+          <Property Type="DateTime" Name="PostCreateDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="PostFaceImage" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="PostSeoDesc" Nullable="true" MaxLength="400" />
+          <Property Type="String" Name="PostSeoKeyword" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="URLFriendly" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="PostDescription" Nullable="true" MaxLength="Max" />
+          <Property Type="Boolean" Name="Active" Nullable="false" />
+          <Property Type="DateTime" Name="PostUpdateDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="CountView" Nullable="false" />
+          <Property Type="Boolean" Name="IsHome" Nullable="false" />
+          <Property Type="String" Name="Tags" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="FullName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ImgFace" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="store_GetPostPopular_Result">
+          <Property Type="String" Name="PostTitle" Nullable="false" MaxLength="300" />
+          <Property Type="String" Name="PostFaceImage" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="URLFriendly" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="postid" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="store_GetPostSection2_Result">
+          <Property Type="Int32" Name="PostId" Nullable="false" />
+          <Property Type="String" Name="PostTitle" Nullable="false" MaxLength="300" />
+          <Property Type="String" Name="PostContent" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="PostType" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="PostAuthor" Nullable="true" />
+          <Property Type="DateTime" Name="PostCreateDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="PostFaceImage" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="PostSeoDesc" Nullable="true" MaxLength="400" />
+          <Property Type="String" Name="PostSeoKeyword" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="URLFriendly" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="PostDescription" Nullable="true" MaxLength="Max" />
+          <Property Type="Boolean" Name="Active" Nullable="false" />
+          <Property Type="DateTime" Name="PostUpdateDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="CountView" Nullable="false" />
+          <Property Type="Boolean" Name="IsHome" Nullable="false" />
+          <Property Type="String" Name="Tags" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="FullName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ImgFace" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="store_GetPostSlider_Result">
+          <Property Type="Int32" Name="PostId" Nullable="false" />
+          <Property Type="String" Name="PostTitle" Nullable="false" MaxLength="300" />
+          <Property Type="String" Name="PostContent" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="PostType" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="PostAuthor" Nullable="true" />
+          <Property Type="DateTime" Name="PostCreateDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="PostFaceImage" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="PostSeoDesc" Nullable="true" MaxLength="400" />
+          <Property Type="String" Name="PostSeoKeyword" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="URLFriendly" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="PostDescription" Nullable="true" MaxLength="Max" />
+          <Property Type="Boolean" Name="Active" Nullable="false" />
+          <Property Type="DateTime" Name="PostUpdateDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="CountView" Nullable="false" />
+          <Property Type="Boolean" Name="IsHome" Nullable="false" />
+          <Property Type="String" Name="Tags" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="FullName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ImgFace" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="store_GetTags_Result">
+          <Property Type="Int32" Name="TagID" Nullable="false" />
+          <Property Type="String" Name="TagName" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="CountTag" Nullable="false" />
+          <Property Type="String" Name="URL" Nullable="false" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="store_GetPostIndex_Result">
+          <Property Type="String" Name="PostTitle" Nullable="false" MaxLength="300" />
+          <Property Type="String" Name="PostFaceImage" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="URLFriendly" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="postid" Nullable="false" />
+          <Property Type="DateTime" Name="PostCreateDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="PostDescription" Nullable="true" MaxLength="Max" />
+        </ComplexType>
+        <ComplexType Name="store_GetProductSizeFrame_Result">
+          <Property Type="Int32" Name="ProSizeID" Nullable="false" />
+          <Property Type="Int32" Name="ProID" Nullable="false" />
+          <Property Type="Int32" Name="SizeID" Nullable="false" />
+          <Property Type="Int32" Name="PositionInt" Nullable="false" />
+          <Property Type="Int32" Name="CountSize" Nullable="false" />
+          <Property Type="Int32" Name="SetTop" Nullable="false" />
+          <Property Type="Int32" Name="SetLeft" Nullable="false" />
+          <Property Type="Int32" Name="sizeint" Nullable="false" />
+          <Property Type="String" Name="Class" Nullable="false" MaxLength="31" />
+          <Property Type="String" Name="Color" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="store_GetProductTopSaleHomePage_Result">
+          <Property Type="Int32" Name="ProductID" Nullable="false" />
+          <Property Type="String" Name="ProductCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="CateID" Nullable="false" MaxLength="30" />
+          <Property Type="Double" Name="PriceRetail" Nullable="false" />
+          <Property Type="String" Name="PriceRetailStr" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Images" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="ProDescription" Nullable="false" MaxLength="Max" />
+          <Property Type="String" Name="Note" Nullable="true" MaxLength="Max" />
+          <Property Type="Boolean" Name="IsOnSale" Nullable="false" />
+          <Property Type="Int32" Name="CreateBy" Nullable="false" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="UpdateBy" Nullable="true" />
+          <Property Type="DateTime" Name="UpdateDate" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="Active" Nullable="false" />
+          <Property Type="String" Name="URLFriendly" Nullable="false" MaxLength="200" />
+          <Property Type="Boolean" Name="IsTarget" Nullable="false" />
+          <Property Type="String" Name="ImageHover" Nullable="false" MaxLength="250" />
+          <Property Type="String" Name="Gallery" Nullable="false" MaxLength="Max" />
+          <Property Type="Int32" Name="CountSaled" Nullable="false" />
+          <Property Type="Double" Name="Rate" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="CMS_CateProduct">
+          <Key>
+            <PropertyRef Name="CategoyID" />
+          </Key>
+          <Property Name="CategoyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ParentID" Type="Int32" Nullable="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="CateURL" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ImgHomePage" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CMS_Log">
+          <Key>
+            <PropertyRef Name="LogID" />
+          </Key>
+          <Property Name="LogID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="ContentLog" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Fullname" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CMS_Menu">
+          <Key>
+            <PropertyRef Name="MenuID" />
+          </Key>
+          <Property Name="MenuID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MenuName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ParentID" Type="Int32" Nullable="false" />
+          <Property Name="URL" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Icon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OrderMenu" Type="Int32" Nullable="false" />
+          <Property Name="IsShow" Type="Boolean" Nullable="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CMS_MenuRole">
+          <Key>
+            <PropertyRef Name="RoleMenuID" />
+          </Key>
+          <Property Name="RoleMenuID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleID" Type="Int32" Nullable="false" />
+          <Property Name="MenuID" Type="Int32" Nullable="false" />
+          <Property Name="ViewData" Type="Boolean" Nullable="false" />
+          <Property Name="AddData" Type="Boolean" Nullable="false" />
+          <Property Name="EditData" Type="Boolean" Nullable="false" />
+          <Property Name="DelData" Type="Boolean" Nullable="false" />
+          <Property Name="Import" Type="Boolean" Nullable="false" />
+          <Property Name="Export" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CMS_Role">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CreateBy" Type="Int32" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdateBy" Type="Int32" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CMS_UserRole">
+          <Key>
+            <PropertyRef Name="UserRoleID" />
+          </Key>
+          <Property Name="UserRoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="RoleID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CMS_Users">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Pass" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FullName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="Boolean" />
+          <Property Name="Birthday" Type="DateTime" Precision="3" />
+          <Property Name="CreateBy" Type="Int32" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdateBy" Type="Int32" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="LastLogin" Type="DateTime" Precision="3" />
+          <Property Name="ImgFace" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="Banned" Type="Boolean" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Web_Banner">
+          <Key>
+            <PropertyRef Name="BannerID" />
+          </Key>
+          <Property Name="BannerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Images" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Link" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Position" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Web_Category">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ParentId" Type="Int32" Nullable="false" />
+          <Property Name="CategoryName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CateType" Type="Int32" />
+          <Property Name="CateURL" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CateIcon" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Web_CategoryPortfolio">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ParentId" Type="Int32" Nullable="false" />
+          <Property Name="CategoryName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CateImg" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CateURL" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CateIcon" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Web_Config">
+          <Key>
+            <PropertyRef Name="ConfigID" />
+          </Key>
+          <Property Name="ConfigID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Hotline" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Facebook" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="GooglePlus" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Youtube" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="CodeAnalytics" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Web_Menu">
+          <Key>
+            <PropertyRef Name="MenuId" />
+          </Key>
+          <Property Name="MenuId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MenuName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="URL" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Boolean" />
+          <Property Name="Icon" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="MenuTypeId" Type="Int32" />
+          <Property Name="ParentId" Type="Int32" />
+          <Property Name="MenuOrder" Type="Int32" />
+          <Property Name="MenuTarget" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Web_MenuType">
+          <Key>
+            <PropertyRef Name="MenuTypeId" />
+          </Key>
+          <Property Name="MenuTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Web_Portfolio">
+          <Key>
+            <PropertyRef Name="PortfolioId" />
+          </Key>
+          <Property Name="PortfolioId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Author" Type="Int32" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="ImageFace" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ImgGallery" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SeoDesc" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="SeoKeyword" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="URLFriendly" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Web_PortfolioCategory">
+          <Key>
+            <PropertyRef Name="PortfolioCateID" />
+          </Key>
+          <Property Name="PortfolioCateID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PortfolioID" Type="Int32" Nullable="false" />
+          <Property Name="CateID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Web_Post">
+          <Key>
+            <PropertyRef Name="PostId" />
+          </Key>
+          <Property Name="PostId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PostTitle" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="PostContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PostType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PostAuthor" Type="Int32" />
+          <Property Name="PostCreateDate" Type="DateTime" Precision="3" />
+          <Property Name="PostFaceImage" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="PostSeoDesc" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="PostSeoKeyword" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="URLFriendly" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="PostDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="PostUpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="CountView" Type="Int32" Nullable="false" />
+          <Property Name="IsHome" Type="Boolean" Nullable="false" />
+          <Property Name="Tags" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Web_PostCategory">
+          <Key>
+            <PropertyRef Name="CategoryPostID" />
+          </Key>
+          <Property Name="CategoryPostID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PostID" Type="Int32" Nullable="false" />
+          <Property Name="CateID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Web_Tags">
+          <Key>
+            <PropertyRef Name="TagID" />
+          </Key>
+          <Property Name="TagID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TagName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CountTag" Type="Int32" Nullable="false" />
+          <Property Name="URL" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <ComplexType Name="store_GetProductSlider_Result">
+          <Property Type="Int32" Name="ProductID" Nullable="false" />
+          <Property Type="String" Name="ProductCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="CateID" Nullable="false" MaxLength="30" />
+          <Property Type="Double" Name="PriceRetail" Nullable="false" />
+          <Property Type="String" Name="PriceRetailStr" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Images" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="ProDescription" Nullable="false" MaxLength="Max" />
+          <Property Type="String" Name="Note" Nullable="true" MaxLength="Max" />
+          <Property Type="Boolean" Name="IsOnSale" Nullable="false" />
+          <Property Type="Int32" Name="CreateBy" Nullable="false" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="UpdateBy" Nullable="true" />
+          <Property Type="DateTime" Name="UpdateDate" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="Active" Nullable="false" />
+          <Property Type="String" Name="URLFriendly" Nullable="false" MaxLength="200" />
+          <Property Type="Boolean" Name="IsTarget" Nullable="false" />
+          <Property Type="String" Name="ImageHover" Nullable="false" MaxLength="250" />
+          <Property Type="String" Name="Gallery" Nullable="false" MaxLength="Max" />
+          <Property Type="Int32" Name="CountSaled" Nullable="false" />
+          <Property Type="Double" Name="Rate" Nullable="false" />
+          <Property Type="Int32" Name="PriceSource" Nullable="false" />
+          <Property Type="Boolean" Name="IsSlider" Nullable="false" />
+          <Property Type="Boolean" Name="IsFeature" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="store_GetProductFeatureHomePage_Result">
+          <Property Type="Int32" Name="ProductID" Nullable="false" />
+          <Property Type="String" Name="ProductCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="CateID" Nullable="false" MaxLength="30" />
+          <Property Type="Double" Name="PriceRetail" Nullable="false" />
+          <Property Type="String" Name="PriceRetailStr" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Images" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="ProDescription" Nullable="false" MaxLength="Max" />
+          <Property Type="String" Name="Note" Nullable="true" MaxLength="Max" />
+          <Property Type="Boolean" Name="IsOnSale" Nullable="false" />
+          <Property Type="Int32" Name="CreateBy" Nullable="false" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="UpdateBy" Nullable="true" />
+          <Property Type="DateTime" Name="UpdateDate" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="Active" Nullable="false" />
+          <Property Type="String" Name="URLFriendly" Nullable="false" MaxLength="200" />
+          <Property Type="Boolean" Name="IsTarget" Nullable="false" />
+          <Property Type="String" Name="ImageHover" Nullable="false" MaxLength="250" />
+          <Property Type="String" Name="Gallery" Nullable="false" MaxLength="Max" />
+          <Property Type="Int32" Name="CountSaled" Nullable="false" />
+          <Property Type="Double" Name="Rate" Nullable="false" />
+          <Property Type="Int32" Name="PriceSource" Nullable="false" />
+          <Property Type="Boolean" Name="IsSlider" Nullable="false" />
+          <Property Type="Boolean" Name="IsFeature" Nullable="false" />
+          <Property Type="String" Name="CategoryName" Nullable="false" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="store_GetProductByCateID_Result">
+          <Property Type="Int32" Name="ProductID" Nullable="false" />
+          <Property Type="String" Name="ProductCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="CateID" Nullable="false" MaxLength="30" />
+          <Property Type="Double" Name="PriceRetail" Nullable="false" />
+          <Property Type="String" Name="PriceRetailStr" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Images" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="ProDescription" Nullable="false" MaxLength="Max" />
+          <Property Type="String" Name="Note" Nullable="true" MaxLength="Max" />
+          <Property Type="Boolean" Name="IsOnSale" Nullable="false" />
+          <Property Type="Int32" Name="CreateBy" Nullable="false" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="UpdateBy" Nullable="true" />
+          <Property Type="DateTime" Name="UpdateDate" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="Active" Nullable="false" />
+          <Property Type="String" Name="URLFriendly" Nullable="false" MaxLength="200" />
+          <Property Type="Boolean" Name="IsTarget" Nullable="false" />
+          <Property Type="String" Name="ImageHover" Nullable="false" MaxLength="250" />
+          <Property Type="String" Name="Gallery" Nullable="false" MaxLength="Max" />
+          <Property Type="Int32" Name="CountSaled" Nullable="false" />
+          <Property Type="Double" Name="Rate" Nullable="false" />
+          <Property Type="Int32" Name="PriceSource" Nullable="false" />
+          <Property Type="Boolean" Name="IsSlider" Nullable="false" />
+          <Property Type="Boolean" Name="IsFeature" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="CMS_Product">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="CateID" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="PriceRetail" Type="Double" Nullable="false" />
+          <Property Name="PriceRetailStr" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Images" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ProDescription" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsOnSale" Type="Boolean" Nullable="false" />
+          <Property Name="CreateBy" Type="Int32" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdateBy" Type="Int32" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="URLFriendly" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="IsTarget" Type="Boolean" Nullable="false" />
+          <Property Name="ImageHover" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Gallery" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CountSaled" Type="Int32" Nullable="false" />
+          <Property Name="Rate" Type="Double" Nullable="false" />
+          <Property Name="PriceSource" Type="Int32" Nullable="false" />
+          <Property Name="IsSlider" Type="Boolean" Nullable="false" />
+          <Property Name="IsFeature" Type="Boolean" Nullable="false" />
+          <Property Name="ProSumary" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PhotoAlbumModelStoreContainer" CdmEntityContainer="PhotoAlbumEntities">
+          <FunctionImportMapping FunctionImportName="store_GetMenuByUserID" FunctionName="PhotoAlbumModel.Store.store_GetMenuByUserID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PhotoAlbumModel.store_GetMenuByUserID_Result">
+                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+                <ScalarProperty Name="MenuName" ColumnName="MenuName" />
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+                <ScalarProperty Name="OrderMenu" ColumnName="OrderMenu" />
+                <ScalarProperty Name="IsShow" ColumnName="IsShow" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="store_GetPostByCateID" FunctionName="PhotoAlbumModel.Store.store_GetPostByCateID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PhotoAlbumModel.store_GetPostByCateID_Result">
+                <ScalarProperty Name="PostId" ColumnName="PostId" />
+                <ScalarProperty Name="PostTitle" ColumnName="PostTitle" />
+                <ScalarProperty Name="PostContent" ColumnName="PostContent" />
+                <ScalarProperty Name="PostType" ColumnName="PostType" />
+                <ScalarProperty Name="PostAuthor" ColumnName="PostAuthor" />
+                <ScalarProperty Name="PostCreateDate" ColumnName="PostCreateDate" />
+                <ScalarProperty Name="PostFaceImage" ColumnName="PostFaceImage" />
+                <ScalarProperty Name="PostSeoDesc" ColumnName="PostSeoDesc" />
+                <ScalarProperty Name="PostSeoKeyword" ColumnName="PostSeoKeyword" />
+                <ScalarProperty Name="URLFriendly" ColumnName="URLFriendly" />
+                <ScalarProperty Name="PostDescription" ColumnName="PostDescription" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="PostUpdateDate" ColumnName="PostUpdateDate" />
+                <ScalarProperty Name="CountView" ColumnName="CountView" />
+                <ScalarProperty Name="IsHome" ColumnName="IsHome" />
+                <ScalarProperty Name="Tags" ColumnName="Tags" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="ImgFace" ColumnName="ImgFace" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="store_GetPostPopular" FunctionName="PhotoAlbumModel.Store.store_GetPostPopular">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PhotoAlbumModel.store_GetPostPopular_Result">
+                <ScalarProperty Name="PostTitle" ColumnName="PostTitle" />
+                <ScalarProperty Name="PostFaceImage" ColumnName="PostFaceImage" />
+                <ScalarProperty Name="URLFriendly" ColumnName="URLFriendly" />
+                <ScalarProperty Name="postid" ColumnName="postid" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="store_GetPostSection2" FunctionName="PhotoAlbumModel.Store.store_GetPostSection2">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PhotoAlbumModel.store_GetPostSection2_Result">
+                <ScalarProperty Name="PostId" ColumnName="PostId" />
+                <ScalarProperty Name="PostTitle" ColumnName="PostTitle" />
+                <ScalarProperty Name="PostContent" ColumnName="PostContent" />
+                <ScalarProperty Name="PostType" ColumnName="PostType" />
+                <ScalarProperty Name="PostAuthor" ColumnName="PostAuthor" />
+                <ScalarProperty Name="PostCreateDate" ColumnName="PostCreateDate" />
+                <ScalarProperty Name="PostFaceImage" ColumnName="PostFaceImage" />
+                <ScalarProperty Name="PostSeoDesc" ColumnName="PostSeoDesc" />
+                <ScalarProperty Name="PostSeoKeyword" ColumnName="PostSeoKeyword" />
+                <ScalarProperty Name="URLFriendly" ColumnName="URLFriendly" />
+                <ScalarProperty Name="PostDescription" ColumnName="PostDescription" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="PostUpdateDate" ColumnName="PostUpdateDate" />
+                <ScalarProperty Name="CountView" ColumnName="CountView" />
+                <ScalarProperty Name="IsHome" ColumnName="IsHome" />
+                <ScalarProperty Name="Tags" ColumnName="Tags" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="ImgFace" ColumnName="ImgFace" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="store_GetPostSlider" FunctionName="PhotoAlbumModel.Store.store_GetPostSlider">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PhotoAlbumModel.store_GetPostSlider_Result">
+                <ScalarProperty Name="PostId" ColumnName="PostId" />
+                <ScalarProperty Name="PostTitle" ColumnName="PostTitle" />
+                <ScalarProperty Name="PostContent" ColumnName="PostContent" />
+                <ScalarProperty Name="PostType" ColumnName="PostType" />
+                <ScalarProperty Name="PostAuthor" ColumnName="PostAuthor" />
+                <ScalarProperty Name="PostCreateDate" ColumnName="PostCreateDate" />
+                <ScalarProperty Name="PostFaceImage" ColumnName="PostFaceImage" />
+                <ScalarProperty Name="PostSeoDesc" ColumnName="PostSeoDesc" />
+                <ScalarProperty Name="PostSeoKeyword" ColumnName="PostSeoKeyword" />
+                <ScalarProperty Name="URLFriendly" ColumnName="URLFriendly" />
+                <ScalarProperty Name="PostDescription" ColumnName="PostDescription" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="PostUpdateDate" ColumnName="PostUpdateDate" />
+                <ScalarProperty Name="CountView" ColumnName="CountView" />
+                <ScalarProperty Name="IsHome" ColumnName="IsHome" />
+                <ScalarProperty Name="Tags" ColumnName="Tags" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="ImgFace" ColumnName="ImgFace" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="store_GetTags" FunctionName="PhotoAlbumModel.Store.store_GetTags">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PhotoAlbumModel.store_GetTags_Result">
+                <ScalarProperty Name="TagID" ColumnName="TagID" />
+                <ScalarProperty Name="TagName" ColumnName="TagName" />
+                <ScalarProperty Name="CountTag" ColumnName="CountTag" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="store_GetPostIndex" FunctionName="PhotoAlbumModel.Store.store_GetPostIndex">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PhotoAlbumModel.store_GetPostIndex_Result">
+                <ScalarProperty Name="PostTitle" ColumnName="PostTitle" />
+                <ScalarProperty Name="PostFaceImage" ColumnName="PostFaceImage" />
+                <ScalarProperty Name="URLFriendly" ColumnName="URLFriendly" />
+                <ScalarProperty Name="postid" ColumnName="postid" />
+                <ScalarProperty Name="PostCreateDate" ColumnName="PostCreateDate" />
+                <ScalarProperty Name="PostDescription" ColumnName="PostDescription" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="store_GetProductSizeFrame" FunctionName="PhotoAlbumModel.Store.store_GetProductSizeFrame">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PhotoAlbumModel.store_GetProductSizeFrame_Result">
+                <ScalarProperty Name="ProSizeID" ColumnName="ProSizeID" />
+                <ScalarProperty Name="ProID" ColumnName="ProID" />
+                <ScalarProperty Name="SizeID" ColumnName="SizeID" />
+                <ScalarProperty Name="PositionInt" ColumnName="PositionInt" />
+                <ScalarProperty Name="CountSize" ColumnName="CountSize" />
+                <ScalarProperty Name="SetTop" ColumnName="SetTop" />
+                <ScalarProperty Name="SetLeft" ColumnName="SetLeft" />
+                <ScalarProperty Name="sizeint" ColumnName="sizeint" />
+                <ScalarProperty Name="Class" ColumnName="Class" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="store_GetProductTopSaleHomePage" FunctionName="PhotoAlbumModel.Store.store_GetProductTopSaleHomePage">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PhotoAlbumModel.store_GetProductTopSaleHomePage_Result">
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CateID" ColumnName="CateID" />
+                <ScalarProperty Name="PriceRetail" ColumnName="PriceRetail" />
+                <ScalarProperty Name="PriceRetailStr" ColumnName="PriceRetailStr" />
+                <ScalarProperty Name="Images" ColumnName="Images" />
+                <ScalarProperty Name="ProDescription" ColumnName="ProDescription" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="IsOnSale" ColumnName="IsOnSale" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="URLFriendly" ColumnName="URLFriendly" />
+                <ScalarProperty Name="IsTarget" ColumnName="IsTarget" />
+                <ScalarProperty Name="ImageHover" ColumnName="ImageHover" />
+                <ScalarProperty Name="Gallery" ColumnName="Gallery" />
+                <ScalarProperty Name="CountSaled" ColumnName="CountSaled" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="CMS_CateProduct">
+            <EntityTypeMapping TypeName="PhotoAlbumModel.CMS_CateProduct">
+              <MappingFragment StoreEntitySet="CMS_CateProduct">
+                <ScalarProperty Name="ImgHomePage" ColumnName="ImgHomePage" />
+                <ScalarProperty Name="CateURL" ColumnName="CateURL" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CategoyID" ColumnName="CategoyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CMS_Log">
+            <EntityTypeMapping TypeName="PhotoAlbumModel.CMS_Log">
+              <MappingFragment StoreEntitySet="CMS_Log">
+                <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="ContentLog" ColumnName="ContentLog" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="LogID" ColumnName="LogID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CMS_Menu">
+            <EntityTypeMapping TypeName="PhotoAlbumModel.CMS_Menu">
+              <MappingFragment StoreEntitySet="CMS_Menu">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="IsShow" ColumnName="IsShow" />
+                <ScalarProperty Name="OrderMenu" ColumnName="OrderMenu" />
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+                <ScalarProperty Name="MenuName" ColumnName="MenuName" />
+                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CMS_MenuRole">
+            <EntityTypeMapping TypeName="PhotoAlbumModel.CMS_MenuRole">
+              <MappingFragment StoreEntitySet="CMS_MenuRole">
+                <ScalarProperty Name="Export" ColumnName="Export" />
+                <ScalarProperty Name="Import" ColumnName="Import" />
+                <ScalarProperty Name="DelData" ColumnName="DelData" />
+                <ScalarProperty Name="EditData" ColumnName="EditData" />
+                <ScalarProperty Name="AddData" ColumnName="AddData" />
+                <ScalarProperty Name="ViewData" ColumnName="ViewData" />
+                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="RoleMenuID" ColumnName="RoleMenuID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CMS_Role">
+            <EntityTypeMapping TypeName="PhotoAlbumModel.CMS_Role">
+              <MappingFragment StoreEntitySet="CMS_Role">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CMS_UserRole">
+            <EntityTypeMapping TypeName="PhotoAlbumModel.CMS_UserRole">
+              <MappingFragment StoreEntitySet="CMS_UserRole">
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserRoleID" ColumnName="UserRoleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CMS_Users">
+            <EntityTypeMapping TypeName="PhotoAlbumModel.CMS_Users">
+              <MappingFragment StoreEntitySet="CMS_Users">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Banned" ColumnName="Banned" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ImgFace" ColumnName="ImgFace" />
+                <ScalarProperty Name="LastLogin" ColumnName="LastLogin" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Pass" ColumnName="Pass" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Web_Banner">
+            <EntityTypeMapping TypeName="PhotoAlbumModel.Web_Banner">
+              <MappingFragment StoreEntitySet="Web_Banner">
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="Images" ColumnName="Images" />
+                <ScalarProperty Name="BannerID" ColumnName="BannerID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Web_Category">
+            <EntityTypeMapping TypeName="PhotoAlbumModel.Web_Category">
+              <MappingFragment StoreEntitySet="Web_Category">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="CateIcon" ColumnName="CateIcon" />
+                <ScalarProperty Name="CateURL" ColumnName="CateURL" />
+                <ScalarProperty Name="CateType" ColumnName="CateType" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Web_CategoryPortfolio">
+            <EntityTypeMapping TypeName="PhotoAlbumModel.Web_CategoryPortfolio">
+              <MappingFragment StoreEntitySet="Web_CategoryPortfolio">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="CateIcon" ColumnName="CateIcon" />
+                <ScalarProperty Name="CateURL" ColumnName="CateURL" />
+                <ScalarProperty Name="CateImg" ColumnName="CateImg" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Web_Config">
+            <EntityTypeMapping TypeName="PhotoAlbumModel.Web_Config">
+              <MappingFragment StoreEntitySet="Web_Config">
+                <ScalarProperty Name="CodeAnalytics" ColumnName="CodeAnalytics" />
+                <ScalarProperty Name="Youtube" ColumnName="Youtube" />
+                <ScalarProperty Name="GooglePlus" ColumnName="GooglePlus" />
+                <ScalarProperty Name="Facebook" ColumnName="Facebook" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Hotline" ColumnName="Hotline" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="ConfigID" ColumnName="ConfigID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Web_Menu">
+            <EntityTypeMapping TypeName="PhotoAlbumModel.Web_Menu">
+              <MappingFragment StoreEntitySet="Web_Menu">
+                <ScalarProperty Name="MenuTarget" ColumnName="MenuTarget" />
+                <ScalarProperty Name="MenuOrder" ColumnName="MenuOrder" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="MenuTypeId" ColumnName="MenuTypeId" />
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="MenuName" ColumnName="MenuName" />
+                <ScalarProperty Name="MenuId" ColumnName="MenuId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Web_MenuType">
+            <EntityTypeMapping TypeName="PhotoAlbumModel.Web_MenuType">
+              <MappingFragment StoreEntitySet="Web_MenuType">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+                <ScalarProperty Name="MenuTypeId" ColumnName="MenuTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Web_Portfolio">
+            <EntityTypeMapping TypeName="PhotoAlbumModel.Web_Portfolio">
+              <MappingFragment StoreEntitySet="Web_Portfolio">
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="URLFriendly" ColumnName="URLFriendly" />
+                <ScalarProperty Name="SeoKeyword" ColumnName="SeoKeyword" />
+                <ScalarProperty Name="SeoDesc" ColumnName="SeoDesc" />
+                <ScalarProperty Name="ImgGallery" ColumnName="ImgGallery" />
+                <ScalarProperty Name="ImageFace" ColumnName="ImageFace" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Author" ColumnName="Author" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="PortfolioId" ColumnName="PortfolioId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Web_PortfolioCategory">
+            <EntityTypeMapping TypeName="PhotoAlbumModel.Web_PortfolioCategory">
+              <MappingFragment StoreEntitySet="Web_PortfolioCategory">
+                <ScalarProperty Name="CateID" ColumnName="CateID" />
+                <ScalarProperty Name="PortfolioID" ColumnName="PortfolioID" />
+                <ScalarProperty Name="PortfolioCateID" ColumnName="PortfolioCateID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Web_Post">
+            <EntityTypeMapping TypeName="PhotoAlbumModel.Web_Post">
+              <MappingFragment StoreEntitySet="Web_Post">
+                <ScalarProperty Name="Tags" ColumnName="Tags" />
+                <ScalarProperty Name="IsHome" ColumnName="IsHome" />
+                <ScalarProperty Name="CountView" ColumnName="CountView" />
+                <ScalarProperty Name="PostUpdateDate" ColumnName="PostUpdateDate" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="PostDescription" ColumnName="PostDescription" />
+                <ScalarProperty Name="URLFriendly" ColumnName="URLFriendly" />
+                <ScalarProperty Name="PostSeoKeyword" ColumnName="PostSeoKeyword" />
+                <ScalarProperty Name="PostSeoDesc" ColumnName="PostSeoDesc" />
+                <ScalarProperty Name="PostFaceImage" ColumnName="PostFaceImage" />
+                <ScalarProperty Name="PostCreateDate" ColumnName="PostCreateDate" />
+                <ScalarProperty Name="PostAuthor" ColumnName="PostAuthor" />
+                <ScalarProperty Name="PostType" ColumnName="PostType" />
+                <ScalarProperty Name="PostContent" ColumnName="PostContent" />
+                <ScalarProperty Name="PostTitle" ColumnName="PostTitle" />
+                <ScalarProperty Name="PostId" ColumnName="PostId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Web_PostCategory">
+            <EntityTypeMapping TypeName="PhotoAlbumModel.Web_PostCategory">
+              <MappingFragment StoreEntitySet="Web_PostCategory">
+                <ScalarProperty Name="CateID" ColumnName="CateID" />
+                <ScalarProperty Name="PostID" ColumnName="PostID" />
+                <ScalarProperty Name="CategoryPostID" ColumnName="CategoryPostID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Web_Tags">
+            <EntityTypeMapping TypeName="PhotoAlbumModel.Web_Tags">
+              <MappingFragment StoreEntitySet="Web_Tags">
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="CountTag" ColumnName="CountTag" />
+                <ScalarProperty Name="TagName" ColumnName="TagName" />
+                <ScalarProperty Name="TagID" ColumnName="TagID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="store_GetProductSlider" FunctionName="PhotoAlbumModel.Store.store_GetProductSlider">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PhotoAlbumModel.store_GetProductSlider_Result">
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CateID" ColumnName="CateID" />
+                <ScalarProperty Name="PriceRetail" ColumnName="PriceRetail" />
+                <ScalarProperty Name="PriceRetailStr" ColumnName="PriceRetailStr" />
+                <ScalarProperty Name="Images" ColumnName="Images" />
+                <ScalarProperty Name="ProDescription" ColumnName="ProDescription" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="IsOnSale" ColumnName="IsOnSale" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="URLFriendly" ColumnName="URLFriendly" />
+                <ScalarProperty Name="IsTarget" ColumnName="IsTarget" />
+                <ScalarProperty Name="ImageHover" ColumnName="ImageHover" />
+                <ScalarProperty Name="Gallery" ColumnName="Gallery" />
+                <ScalarProperty Name="CountSaled" ColumnName="CountSaled" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="PriceSource" ColumnName="PriceSource" />
+                <ScalarProperty Name="IsSlider" ColumnName="IsSlider" />
+                <ScalarProperty Name="IsFeature" ColumnName="IsFeature" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="store_GetProductFeatureHomePage" FunctionName="PhotoAlbumModel.Store.store_GetProductFeatureHomePage">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PhotoAlbumModel.store_GetProductFeatureHomePage_Result">
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CateID" ColumnName="CateID" />
+                <ScalarProperty Name="PriceRetail" ColumnName="PriceRetail" />
+                <ScalarProperty Name="PriceRetailStr" ColumnName="PriceRetailStr" />
+                <ScalarProperty Name="Images" ColumnName="Images" />
+                <ScalarProperty Name="ProDescription" ColumnName="ProDescription" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="IsOnSale" ColumnName="IsOnSale" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="URLFriendly" ColumnName="URLFriendly" />
+                <ScalarProperty Name="IsTarget" ColumnName="IsTarget" />
+                <ScalarProperty Name="ImageHover" ColumnName="ImageHover" />
+                <ScalarProperty Name="Gallery" ColumnName="Gallery" />
+                <ScalarProperty Name="CountSaled" ColumnName="CountSaled" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="PriceSource" ColumnName="PriceSource" />
+                <ScalarProperty Name="IsSlider" ColumnName="IsSlider" />
+                <ScalarProperty Name="IsFeature" ColumnName="IsFeature" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="store_GetProductByCateID" FunctionName="PhotoAlbumModel.Store.store_GetProductByCateID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PhotoAlbumModel.store_GetProductByCateID_Result">
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CateID" ColumnName="CateID" />
+                <ScalarProperty Name="PriceRetail" ColumnName="PriceRetail" />
+                <ScalarProperty Name="PriceRetailStr" ColumnName="PriceRetailStr" />
+                <ScalarProperty Name="Images" ColumnName="Images" />
+                <ScalarProperty Name="ProDescription" ColumnName="ProDescription" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="IsOnSale" ColumnName="IsOnSale" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="URLFriendly" ColumnName="URLFriendly" />
+                <ScalarProperty Name="IsTarget" ColumnName="IsTarget" />
+                <ScalarProperty Name="ImageHover" ColumnName="ImageHover" />
+                <ScalarProperty Name="Gallery" ColumnName="Gallery" />
+                <ScalarProperty Name="CountSaled" ColumnName="CountSaled" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="PriceSource" ColumnName="PriceSource" />
+                <ScalarProperty Name="IsSlider" ColumnName="IsSlider" />
+                <ScalarProperty Name="IsFeature" ColumnName="IsFeature" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="CMS_Product">
+            <EntityTypeMapping TypeName="PhotoAlbumModel.CMS_Product">
+              <MappingFragment StoreEntitySet="CMS_Product">
+                <ScalarProperty Name="ProSumary" ColumnName="ProSumary" />
+                <ScalarProperty Name="IsFeature" ColumnName="IsFeature" />
+                <ScalarProperty Name="IsSlider" ColumnName="IsSlider" />
+                <ScalarProperty Name="PriceSource" ColumnName="PriceSource" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="CountSaled" ColumnName="CountSaled" />
+                <ScalarProperty Name="Gallery" ColumnName="Gallery" />
+                <ScalarProperty Name="ImageHover" ColumnName="ImageHover" />
+                <ScalarProperty Name="IsTarget" ColumnName="IsTarget" />
+                <ScalarProperty Name="URLFriendly" ColumnName="URLFriendly" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="IsOnSale" ColumnName="IsOnSale" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="ProDescription" ColumnName="ProDescription" />
+                <ScalarProperty Name="Images" ColumnName="Images" />
+                <ScalarProperty Name="PriceRetailStr" ColumnName="PriceRetailStr" />
+                <ScalarProperty Name="PriceRetail" ColumnName="PriceRetail" />
+                <ScalarProperty Name="CateID" ColumnName="CateID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
